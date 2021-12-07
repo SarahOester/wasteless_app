@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WasteLess</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Get started with HTML, CSS and JavaScript"
+    />
+    <meta name="author" content="Ida Kronborg and Sarah Dybvad" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.png" />
+  </head>
+
+  <body>
+    <!-------------- Navigation -------------->
+    <nav class="tabbar">
+      <a class="nav-link" href="#/">Home</a>
+      <a class="nav-link" href="#/product">Products</a>
+      <a class="nav-link" href="#/create-products">Create</a>
+      <a class="nav-link" href="#/profile">Profile</a>
+      <a class="right" id="btn-logout">Logout</a>
+    </nav>
+
+    <main id="appRoot">
+      <!-------------- Pages -------------->
+
+      <!-- login page -->
+      <section id="login" class="page">
+        <header class="topbar"></header>
+        <p>WasteLess</p>
+        <p class="login-message"></p>
+        <form>
+          <input id="login-username" type="text" placeholder="Type username" />
+          <input id="login-password" type="password" placeholder="Password" />
+          <button type="button" id="btn-login">Login</button>
+        </form>
+        <p><a class="nav-link" href="#/signup">Go to Sign up</a></p>
+      </section>
+
+      <!-- signup page -->
+      <section id="signup" class="page">
+        <header class="topbar">
+          <h2>Sign up</h2>
+        </header>
+        <p>Sign up for Business</p>
+        <p class="signup-message"></p>
+        <form>
+          <input
+            id="signup-businessName"
+            type="text"
+            name="businessName"
+            placeholder="Type your business name"
+          />
+          <input
+            id="signup-adress"
+            type="text"
+            name="adress"
+            placeholder="Type your adress"
+          />
+          <input
+            id="signup-zipcode"
+            type="number"
+            name="zipcode"
+            placeholder="Type your zipcode"
+          />
+          <input
+            id="signup-username"
+            type="email"
+            placeholder="Type your e-mail adress"
+            autocomplete="new-username"
+          />
+          <input
+            id="signup-password"
+            type="password"
+            placeholder="Password"
+            autocomplete="new-password"
+          />
+          <input
+            id="signup-password-check"
+            type="password"
+            placeholder="Password"
+            autocomplete="new-password"
+          />
+
+          <button type="button" id="btn-signup">Sign up</button>
+        </form>
+      </section>
+
+      <!-- home page -->
+      <section id="home" class="page">
+        <h2>Home</h2>
+        <p>WasteLess</p>
+      </section>
+
+      <!-- products -->
+      <section id="product" class="page">
+        <h2>Products</h2>
+        <p>My Snf</p>
+      </section>
+
+      <!-- products -->
+      <section id="product" class="page">
+        <h2>Products</h2>
+        <p>My Snf</p>
+      </section>
+
+      <!-- create -->
+      <section id="create-products" class="page">
+        <h2>Create products</h2>
+        <p>My Snf</p>
+      </section>
+
+      <!-- profile page -->
+      <section id="profile" class="page">
+        <h2>Profile</h2>
+        <a class="right" id="btn-logout">Logout</a>
+        <section id="user-data"></section>
+      </section>
+    </main>
+
+    <script src="./js/app.js" type="module"></script>
+  </body>
+</html>
