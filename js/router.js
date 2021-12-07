@@ -113,7 +113,7 @@ function appendUserData() {
             <p>Business name: ${user.businessName}</p>
             <p>Adress: ${user.adress}</p>        
             <p>Zipcode: ${user.zipcode}</p>
-            <p>Mail: ${user.email}</p>
+            <p>Mail: ${user.username}</p>
         </article>
     `;
 }

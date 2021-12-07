@@ -35,6 +35,7 @@ INSERT INTO countries(id,countryName,countryPopulation,continent,dateAdded,dateE
 
 INSERT INTO userlogin(id,username,pass) VALUES(57,'Test','$2y$10$cg0PrkttTXI65aZ1SNImGeOUp4.THzqz8Cd489zDYb9x97RWFErsW');
 INSERT INTO users(id,businessName,adress,zipcode,country) VALUES(2,'Nicklas','Andersen',22,1,'Male'),(3,'Sarah','Dybvad',34,1,'Female'),(4,'Alex','Handhiuc',24,9,'Male'),(5,'Piotr','Pospiech',20,5,'Male'),(47,'Kasper',NULL,NULL,45,NULL),(48,'Nanna',NULL,NULL,45,NULL),(49,'Lasse',NULL,NULL,1,NULL),(50,'Isla',NULL,NULL,1,NULL),(57,'','',60,21,'Other');DROP PROCEDURE IF EXISTS AddNewUser;
+DROP PROCEDURE IF EXISTS AddNewUser;
 CREATE PROCEDURE `AddNewUser`(
     IN businessnameVar VARCHAR(100),
     IN countrynameVar VARCHAR(100)
