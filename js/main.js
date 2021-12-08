@@ -96,18 +96,14 @@ function resetFilterByEnrollment() {
 
 function addNewUser() {
   const name = document.querySelector("#name").value;
-  const course = document.querySelector("#course").value;
   const mail = document.querySelector("#mail").value;
-  const enrollmentType = document.querySelector("#enrollmentType").value;
   const img = document.querySelector("#img").value;
   const id = Date.now(); // dummy generated user id
 
   const newUser = {
     avatarUrl: img,
-    course: course,
     createdAt: id,
     email: mail,
-    enrollmentType: enrollmentType,
     id: id,
     loginId: mail,
     name: name,
@@ -130,10 +126,7 @@ function selectUser(id) {
   _selectedUserId = id;
   const userToEdit = _users.find((user) => user.id == id);
   document.querySelector("#nameEdit").value = userToEdit.name;
-  document.querySelector("#courseEdit").value = userToEdit.course;
   document.querySelector("#mailEdit").value = userToEdit.email;
-  document.querySelector("#enrollmentTypeEdit").value =
-    userToEdit.enrollmentType;
   document.querySelector("#imgEdit").value = userToEdit.avatarUrl;
   navigateTo("update");
 }
@@ -163,15 +156,17 @@ function deleteUser(id) {
 
 function showDetailView(id) {
   const userObject = _users.find((user) => user.id == id);
-  document.querySelector("#detailView h2").innerHTML = userObject.businessName;
+  document.querySelector("#detailView h2").innerHTML = userObject.name;
   document.querySelector("#detailViewContainer").innerHTML = /*html*/ `
-        <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
+        <img src="${userObject.avatarUrl}" onclick="showDetailView('${
+    userObject.id
+  }')">
         <article>
-            <h2>${userObject.businessName}</h2>
+            <h2>${userObject.name}</h2>
             <p>Sortable name: ${userObject.sortableName}</p>
             <a href="mailto:${userObject.email}">${userObject.email}</a>
-            <p>${userObject.title}</p>
-            <p>Pick up time: ${userObject.pickupTime}</p>
+            <p>${userObject.enrollmentType.replace("Enrollment", "")}</p>
+            <p>Course: ${userObject.course}</p>
             <p>User id: ${userObject.id}</p>
         </article>
     `;
@@ -179,7 +174,7 @@ function showDetailView(id) {
 }
 
 if (!_selectedUserId) {
-  navigateTo("users");
+  navigateTo("#/");
 }
 
 function showRandomUser() {

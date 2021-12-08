@@ -191,16 +191,60 @@
         </section>
       </section>
 
-      <!-- products -->
-      <section id="product" class="page">
-        <h2>Products</h2>
-        <p>My Snf</p>
-      </section>
-
       <!-- create -->
       <section id="create-products" class="page">
         <h2>Create products</h2>
-        <p>My Snf</p>
+        <p>
+          You can search your food with others.<br />
+          Create, delete and update your post!
+        </p>
+
+        <!-- <form>
+          <input id="name" type="text" name="name" placeholder="Product title">
+          
+          <input id="category" type="text" name="category" placeholder="Category">
+
+          <textarea id="text-area" type="text" placeholder="Description"></textarea>
+
+          <input id="img" type="text" name="img" placeholder="Paste image URL">
+
+          <button type="button" name="button" onclick="addNewUser()">Add new</button>
+        </form>-->
+
+        <form>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Product title"
+          />
+
+          <input id="mail" type="email" name="mail" placeholder="Type email" />
+          <input
+            id="category"
+            type="text"
+            name="category"
+            placeholder="Category"
+          />
+
+          <textarea
+            id="text-area"
+            type="text"
+            placeholder="Description"
+          ></textarea>
+
+          <input
+            id="img"
+            type="text"
+            name="img"
+            placeholder="Paste image URL"
+          />
+          <button type="button" name="button" onclick="addNewUser()">
+            Add new
+          </button>
+        </form>
+
+        <section id="users-container" class="grid-container"></section>
       </section>
 
       <!-- profile page -->
@@ -211,9 +255,11 @@
     </main>
 
     <script src="./js/app.js" type="module"></script>
+    <<<<<<< HEAD
     <!-- SPA functionality  -->
     <script src="./js/spa.js"></script>
     <!-- main js file -->
+    ======= >>>>>>> 3d707ac4c94af976e725ed4b65fd65bf2095a1a9
     <script src="./js/main.js"></script>
   </body>
 </html>
