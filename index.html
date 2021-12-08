@@ -20,7 +20,7 @@
   <body>
     <!-------------- Navigation -------------->
     <nav class="tabbar">
-      <img src="./img/logo.png" alt="logo" class="logo">
+      <a href="#/"><img src="./img/logo.png" alt="logo" class="logo"></a>
       <a class="nav-link" href="#/">Home</a>
       <a class="nav-link" href="#/product">Products</a>
       <a class="nav-link" href="#/create-products">Create</a>
@@ -34,15 +34,21 @@
 
       <!-- login page -->
       <section id="login" class="page">
-        <header class="topbar"></header>
-        <h1>Welcome to WasteLess business!</h1>
         <p class="login-message"></p>
+
+        <div class="flex-container">
+        <div class="login-container">
+          <h1>WasteLess business!</h1>
+          <p>Be a member today! <a class="nav-link" href="#/signup">Go to Sign up</a></p>
         <form>
           <input id="login-username" type="text" placeholder="Type username" />
           <input id="login-password" type="password" placeholder="Password" />
           <button type="button" id="btn-login">Login</button>
         </form>
-        <p><a class="nav-link" href="#/signup">Go to Sign up</a></p>
+      </div>
+      <img src="./img/home_front_img.png" class="madkurv">
+    </div>
+
       </section>
 
       <!-- signup page -->
@@ -206,6 +212,8 @@
           
           <input id="category" type="text" name="category" placeholder="Category">
 
+          <input id="price" type="number" name="price" placeholder="Price">
+
           <textarea id="text-area" type="text" placeholder="Description"></textarea>
 
           <input id="img" type="text" name="img" placeholder="Paste image URL">
@@ -222,6 +230,8 @@
           />
 
           <input id="mail" type="email" name="mail" placeholder="Type email" />
+
+
           <input
             id="category"
             type="text"
@@ -257,11 +267,9 @@
     </main>
 
     <script src="./js/app.js" type="module"></script>
-    <<<<<<< HEAD
     <!-- SPA functionality  -->
     <script src="./js/spa.js"></script>
     <!-- main js file -->
-    ======= >>>>>>> 3d707ac4c94af976e725ed4b65fd65bf2095a1a9
     <script src="./js/main.js"></script>
   </body>
 </html>

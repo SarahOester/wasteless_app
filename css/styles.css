@@ -1,6 +1,6 @@
 /* ---------- root variables ---------- */
 :root {
-	--green: rgb(#568080);
+	--green: #568080;
 	--green-opacity: rgba(38, 76, 89, 0.2);
 	--light-green: rgb(#E1EADF);
 	--light-grey: #f1f1f4;
@@ -28,6 +28,8 @@ h1 {
 	font-size: 2em;
 	font-weight: 400;
 	letter-spacing: 3px;
+	font-weight: 800;
+	color: var(--green);
 }
 
 h3 {
@@ -45,37 +47,10 @@ a {
 	cursor: pointer;
 }
 
-/* ---------- topbar styling ---------- */
-.topbar {
-	background-color: var(--green);
+p {
+	font-size: 14px;
 	color: var(--text-color-dark);
-	padding: 13.5px;
-	text-transform: uppercase;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 9999;
-}
-
-.topbar h2 {
-	margin: 0;
-	font-weight: 400;
-}
-
-.topbar a {
-	text-decoration: none;
-	color: var(--green);
-	position: absolute;
-	top: 20px;
-}
-
-.topbar a.left {
-	left: 20px;
-}
-
-.topbar a.right {
-	right: 20px;
+	font-weight: 700;
 }
 
 /* ---------- tabbar styling ---------- */
@@ -85,7 +60,6 @@ a {
 }
 
 .tabbar {
-	background-color: var(--green);
 	position: fixed;
 	z-index: 9999;
 	display: flex;
@@ -106,21 +80,19 @@ a {
 	display: inline-block;
 	color: var(--green);
 	text-align: center;
-	padding: 20px 16px;
+	padding: 10px 16px;
 	text-decoration: none;
 	font-size: 0.7em;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 	font-weight: 700;
 	
-	
 }
 
 
 /* Change the color of links on hover */
 .tabbar a:hover {
-	background-color: var(--green);
-	color:green;
+	color: var(--tex);
 	text-decoration: underline;
 
 }
@@ -214,7 +186,27 @@ a {
 	}
 }
 
+/* ---------- login page stryling ---------- */
+.login-container {
+background-color: var(--white);
+padding: 50px;
+}
+
+.flex-container {
+	display: flex;
+	justify-content: center;
+}
+
+.madkurv {
+	width: 30%;
+	background-color: var(--white);
+	padding: 20px;
+}
+
+
+
 /* ---------- input form stryling ---------- */
+
 form {
 	background-color: var(--light-green);
 	padding: 2em 1em 2.5em;
@@ -256,6 +248,7 @@ input {
 	padding: 12px 15px;
 	box-sizing: border-box;
 	display: block;
+
 }
 
 #text-area {
