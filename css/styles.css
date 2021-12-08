@@ -87,10 +87,14 @@ a {
 .tabbar {
 	background-color: var(--green);
 	position: fixed;
-	right: 0;
 	z-index: 9999;
-	
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	top: 25px;
 }
+
+
 .tabbar2 {
 	z-index: 0;
 	padding: 26.5px 20px;
@@ -108,7 +112,10 @@ a {
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 	font-weight: 700;
+	
+	
 }
+
 
 /* Change the color of links on hover */
 .tabbar a:hover {
@@ -134,15 +141,18 @@ a {
 	background: var(--light-grey);
 	animation: fadeIn 0.4s;
 	/* padding equals height of tabbar and topbar */
-	padding: 55px 0;
+	padding: 120px 0;
 }
 
 /* ---------- logo styling ---------- */
 .logo {
-	margin: 2em auto;
 	width: 100%;
-	max-width: 300px;
+	max-width: 100px;
+	padding-left: 2em;
+	padding-right: 25em;
+	
 }
+
 
 /* ---------- animations ---------- */
 /* fade in */
