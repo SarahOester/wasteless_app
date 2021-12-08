@@ -18,12 +18,14 @@ function appendUsers(usersArray) {
     for (const userObject of usersArray) {
         html += /*html*/`
             <article>
-                <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
-                <h2>${userObject.name}</h2>
-                <a href="mailto:${userObject.email}">${userObject.email}</a>
 
-                <button onclick="selectUser('${userObject.id}')">Update</button>
-                <button onclick="deleteUser('${userObject.id}')">Delete</button>
+            <h2>${userObject.name}</h2>
+            <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
+            <a href="mailto:${userObject.email}">${userObject.email}</a>
+            <br><br>
+                <button onclick="selectUser('${userObject.id}')"class="selectbutton">Update</button>
+                <button onclick="deleteUser('${userObject.id}')" class="deletebutton">Delete</button>
+                
             </article>
         `;
     }
@@ -178,9 +180,6 @@ function showRandomUser() {
     console.log(randomUser);
     showDetailView(randomUser.id);
 }
-
-
-
 
 
 // ========== INIT APP ==========
