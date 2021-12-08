@@ -312,3 +312,24 @@ input {
 .login-message {
 	color: var(--text-color-error);
 }
+
+
+
+
+/*--------------- foooter---------------*/
+
+ 
+.footer-container {
+	background-color: var(--green) ;
+	opacity: 80%;
+	padding:45px 0 20px;
+	font-size:15px;
+	line-height:24px;
+	text-align: center;
+	
+}
+
+
+
+
+
