@@ -107,6 +107,7 @@ a {
 	font-size: 0.7em;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
+	font-weight: 700;
 }
 
 /* Change the color of links on hover */
@@ -119,8 +120,9 @@ a {
 
 /* Add a color to the active/current link */
 .tabbar a.active {
-	background-color: var(--light-green);
 	color: var(--green);
+	text-decoration: underline;
+	font-weight: 800;
 }
 
 
