@@ -7,157 +7,160 @@ let _selectedUserId;
 /* -------------------------------------- */
 
 async function fetchUsers() {
-    const url = "https://cederdorff.github.io/mdu-frontend/canvas-users/data/users.json";
-    const response = await fetch(url);
-    const data = await response.json();
-    _users = data;
+  const url =
+    "https://cederdorff.github.io/mdu-frontend/canvas-users/data/users.json";
+  const response = await fetch(url);
+  const data = await response.json();
+  _users = data;
 }
 
 function appendUsers(usersArray) {
-    let html = "";
-    for (const userObject of usersArray) {
-        html += /*html*/`
+  let html = "";
+  for (const userObject of usersArray) {
+    html += /*html*/ `
             <article>
-
-            <h2>${userObject.name}</h2>
-            <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
-            <a href="mailto:${userObject.email}">${userObject.email}</a>
-            <br><br>
-                <button onclick="selectUser('${userObject.id}')"class="selectbutton">Update</button>
-                <button onclick="deleteUser('${userObject.id}')" class="deletebutton">Delete</button>
-                
+                <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
+                <h2>${userObject.businessName}</h2>
+                <p>${userObject.title}</p>
+                <p>Pick up time: ${userObject.pickupTime}</p>
+                <button onclick="selectUser('${userObject.id}')">Update</button>
+                <button onclick="deleteUser('${userObject.id}')">Delete</button>
             </article>
         `;
-    }
-    document.querySelector("#users-container").innerHTML = html;
+  }
+  document.querySelector("#users-container").innerHTML = html;
 }
 
 function orderBy(value) {
-    if (value === "name") {
-        sortByName();
-    } else if (value === "sortableName") {
-        sortBySortableName();
-    }
+  if (value === "name") {
+    sortByName();
+  } else if (value === "sortableName") {
+    sortBySortableName();
+  }
 }
 
 function sortByName() {
-    _users.sort((user1, user2) => {
-        return user1.name.localeCompare(user2.name);
-    });
-    appendUsers(_users);
+  _users.sort((user1, user2) => {
+    return user1.name.localeCompare(user2.name);
+  });
+  appendUsers(_users);
 }
 
 function sortBySortableName() {
-    _users.sort((user1, user2) => {
-        return user1.sortableName.localeCompare(user2.sortableName);
-    });
-    appendUsers(_users);
+  _users.sort((user1, user2) => {
+    return user1.sortableName.localeCompare(user2.sortableName);
+  });
+  appendUsers(_users);
 }
 
 function filterByEnrollment(type) {
-    resetFilterByCourse();
-    if (type === "all") {
-        appendUsers(_users);
-    } else {
-        const results = _users.filter(user => user.enrollmentType === type);
-        appendUsers(results)
-    }
+  resetFilterByCourse();
+  if (type === "all") {
+    appendUsers(_users);
+  } else {
+    const results = _users.filter((user) => user.enrollmentType === type);
+    appendUsers(results);
+  }
 }
 
 function filterByCourse(course) {
-    resetFilterByEnrollment();
-    if (course === "all") {
-        appendUsers(_users);
-    } else {
-        const results = _users.filter(user => user.course === course);
-        appendUsers(results);
-    }
+  resetFilterByEnrollment();
+  if (course === "all") {
+    appendUsers(_users);
+  } else {
+    const results = _users.filter((user) => user.course === course);
+    appendUsers(results);
+  }
 }
 
 function search(value) {
-    resetFilterByCourse();
-    resetFilterByEnrollment();
-    value = value.toLowerCase();
-    const results = _users.filter(user => {
-        const name = user.name.toLowerCase();
-        if (name.includes(value)) {
-            return user;
-        }
-    });
-    appendUsers(results);
+  resetFilterByCourse();
+  resetFilterByEnrollment();
+  value = value.toLowerCase();
+  const results = _users.filter((user) => {
+    const name = user.name.toLowerCase();
+    if (name.includes(value)) {
+      return user;
+    }
+  });
+  appendUsers(results);
 }
 
 function resetFilterByCourse() {
-    document.querySelector("#filterByCourse").value = "all";
+  document.querySelector("#filterByCourse").value = "all";
 }
 
 function resetFilterByEnrollment() {
-    document.querySelector("#filterByEnrollment").value = "all";
+  document.querySelector("#filterByEnrollment").value = "all";
 }
 
 function addNewUser() {
-    const name = document.querySelector("#name").value;
-    const mail = document.querySelector("#mail").value;
-    const img = document.querySelector("#img").value;
-    const id = Date.now(); // dummy generated user id
+  const name = document.querySelector("#name").value;
+  const mail = document.querySelector("#mail").value;
+  const img = document.querySelector("#img").value;
+  const id = Date.now(); // dummy generated user id
 
-    const newUser = {
-        avatarUrl: img,
-        createdAt: id,
-        email: mail,
-        id: id,
-        loginId: mail,
-        name: name,
-        sortableName: generateSortableName(name)
-    };
+  const newUser = {
+    avatarUrl: img,
+    createdAt: id,
+    email: mail,
+    id: id,
+    loginId: mail,
+    name: name,
+    sortableName: generateSortableName(name),
+  };
 
-    _users.push(newUser);
-    appendUsers(_users);
-    navigateTo("users");
+  _users.push(newUser);
+  appendUsers(_users);
+  navigateTo("users");
 }
 
 function generateSortableName(name) {
-    const nameStringArray = name.split(" ");
-    const lastname = nameStringArray.pop();
-    const firstnames = nameStringArray.join(" ");
-    return `${lastname}, ${firstnames}`;
+  const nameStringArray = name.split(" ");
+  const lastname = nameStringArray.pop();
+  const firstnames = nameStringArray.join(" ");
+  return `${lastname}, ${firstnames}`;
 }
 
 function selectUser(id) {
-    _selectedUserId = id;
-    const userToEdit = _users.find(user => user.id == id);
-    document.querySelector("#nameEdit").value = userToEdit.name;
-    document.querySelector("#mailEdit").value = userToEdit.email;
-    document.querySelector("#imgEdit").value = userToEdit.avatarUrl;
-    navigateTo("update");
+  _selectedUserId = id;
+  const userToEdit = _users.find((user) => user.id == id);
+  document.querySelector("#nameEdit").value = userToEdit.name;
+  document.querySelector("#mailEdit").value = userToEdit.email;
+  document.querySelector("#imgEdit").value = userToEdit.avatarUrl;
+  navigateTo("update");
 }
 
 function updateUser() {
-    const userToEdit = _users.find(user => user.id == _selectedUserId);
-    userToEdit.name = document.querySelector("#nameEdit").value;
-    userToEdit.course = document.querySelector("#courseEdit").value;
-    userToEdit.email = document.querySelector("#mailEdit").value;
-    userToEdit.loginId = userToEdit.email;
-    userToEdit.enrollmentType = document.querySelector("#enrollmentTypeEdit").value;
-    userToEdit.avatarUrl = document.querySelector("#imgEdit").value;
-    userToEdit.sortableName = generateSortableName(userToEdit.name);
-    appendUsers(_users);
-    navigateTo("users");
+  const userToEdit = _users.find((user) => user.id == _selectedUserId);
+  userToEdit.name = document.querySelector("#nameEdit").value;
+  userToEdit.course = document.querySelector("#courseEdit").value;
+  userToEdit.email = document.querySelector("#mailEdit").value;
+  userToEdit.loginId = userToEdit.email;
+  userToEdit.enrollmentType = document.querySelector(
+    "#enrollmentTypeEdit"
+  ).value;
+  userToEdit.avatarUrl = document.querySelector("#imgEdit").value;
+  userToEdit.sortableName = generateSortableName(userToEdit.name);
+  appendUsers(_users);
+  navigateTo("users");
 }
 
 function deleteUser(id) {
-    const deleteUser = confirm("Are you sure you want to delete user?");
-    if (deleteUser) {
-        _users = _users.filter(user => user.id != id);
-        appendUsers(_users);
-    }
+  const deleteUser = confirm("Are you sure you want to delete user?");
+  if (deleteUser) {
+    _users = _users.filter((user) => user.id != id);
+    appendUsers(_users);
+  }
 }
 
 function showDetailView(id) {
-    const userObject = _users.find(user => user.id == id);
-    document.querySelector("#detailView h2").innerHTML = userObject.name;
-    document.querySelector("#detailViewContainer").innerHTML = /*html*/`
-        <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
+  const userObject = _users.find((user) => user.id == id);
+  document.querySelector("#detailView h2").innerHTML = userObject.name;
+  document.querySelector("#detailViewContainer").innerHTML = /*html*/ `
+        <img src="${userObject.avatarUrl}" onclick="showDetailView('${
+    userObject.id
+  }')">
         <article>
             <h2>${userObject.name}</h2>
             <p>Sortable name: ${userObject.sortableName}</p>
@@ -167,26 +170,24 @@ function showDetailView(id) {
             <p>User id: ${userObject.id}</p>
         </article>
     `;
-    navigateTo("detailView");
+  navigateTo("detailView");
 }
 
-
 if (!_selectedUserId) {
-    navigateTo("#/");
+  navigateTo("#/");
 }
 
 function showRandomUser() {
-    const randomUser = _users[Math.floor(Math.random() * _users.length)];
-    console.log(randomUser);
-    showDetailView(randomUser.id);
+  const randomUser = _users[Math.floor(Math.random() * _users.length)];
+  console.log(randomUser);
+  showDetailView(randomUser.id);
 }
-
 
 // ========== INIT APP ==========
 
 async function initApp() {
-    await fetchUsers();
-    appendUsers(_users);
+  await fetchUsers();
+  appendUsers(_users);
 }
 
 initApp();
