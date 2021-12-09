@@ -118,8 +118,9 @@
       <section id="product" class="page">
         <h2>Products</h2>
         <p>My Snfjhgcfxdhjkl</p>
-        <div id="grid-users" class="grid-container"></div>
         <a href="#/create" class="nav-link right">Create</a>
+        <div id="grid-users" class="grid-container"></div>
+        
       </section>
 
       <!-- create -->
@@ -132,7 +133,7 @@
         <form>
           <input type="text" id="name" placeholder="Type your name" required />
           <input type="email" id="mail" placeholder="Type your mail" required />
-          <button type="button" name="button" onclick="createUser()">
+          <button id="createButton" type="button" name="button">
             Create User
           </button>
         </form>
@@ -141,9 +142,8 @@
       <!-- edir user page -->
       <section id="update" class="page">
         <header class="topbar">
-          <a href="#/" class="nav-link left">Back</a>
           <h2>Update user</h2>
-          <a class="right" onclick="updateUser()">Update</a>
+          <a class="right" id="updatePage">Update</a>
         </header>
         <form>
           <input
@@ -177,10 +177,5 @@
 
     <script src="./js/app.js" type="module"></script>
     <!-- SPA functionality  -->
-    <script src="./js/spa.js"></script>
-    <!-- Router functionality  -->
-    <script src="js/router.js"></script>
-    <!-- main js file -->
-    <script src="./js/main.js"></script>
   </body>
 </html>
