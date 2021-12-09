@@ -72,7 +72,7 @@ async function createUser() {
   nameInput.value = "";
   mailInput.value = "";
   //navigating back
-  navigateTo("#/");
+  navigateTo("#/product");
 }
 
 // ========== UPDATE ==========
