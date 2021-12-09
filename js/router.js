@@ -36,9 +36,9 @@ export function navigateTo(path) {
  */
 function showPage(path) {
   const userIsAuthenticated = localStorage.getItem("userIsAuthenticated"); // get from localstorage
-
+console.log(userIsAuthenticated);
   hideAllPages(); // hide all pages
-  if (userIsAuthenticated) {
+  if (userIsAuthenticated) { console.log("hej");
     showTabbar(true);
     setActiveTab(path);
     appendUserData();
