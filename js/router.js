@@ -5,7 +5,7 @@
 const _routes = {
   "#/": "home",
   "#/product": "product",
-  "#/create-products": "create-products",
+  "#/create": "create",
   "#/profile": "profile",
   "#/login": "login",
   "#/signup": "signup",
