@@ -31,28 +31,7 @@ function appendUsers(usersArray) {
   document.querySelector("#users-container").innerHTML = html;
 }
 
-function orderBy(value) {
-  if (value === "name") {
-    sortByName();
-  } else if (value === "sortableName") {
-    sortBySortableName();
-  }
-}
-
-function sortByName() {
-  _users.sort((user1, user2) => {
-    return user1.name.localeCompare(user2.name);
-  });
-  appendUsers(_users);
-}
-
-function sortBySortableName() {
-  _users.sort((user1, user2) => {
-    return user1.sortableName.localeCompare(user2.sortableName);
-  });
-  appendUsers(_users);
-}
-
+/* ---------- Filter Function ---------- */
 function filterByEnrollment(type) {
   resetFilterByCourse();
   if (type === "all") {
@@ -73,6 +52,7 @@ function filterByCourse(course) {
   }
 }
 
+/* ---------- Search Function ---------- */
 function search(value) {
   resetFilterByCourse();
   resetFilterByEnrollment();
