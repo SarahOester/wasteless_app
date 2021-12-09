@@ -13,7 +13,6 @@
     />
     <meta name="author" content="Ida Kronborg and Sarah Dybvad" />
     <link rel="stylesheet" href="./css/styles.css" />
-    <link rel="stylesheet" href="./css/main.css" />
     <link rel="shortcut icon" type="image/png" href="./img/favicon.png" />
   </head>
 
@@ -120,7 +119,6 @@
         <p>Thank you for making a difference!</p>
         <a href="#/create" class="nav-link right">Create</a>
         <div id="grid-users" class="grid-container"></div>
-        
       </section>
 
       <!-- create -->
@@ -131,8 +129,42 @@
           Create, delete and update your post!
         </p>
         <form>
-          <input type="text" id="name" placeholder="Type your name" required />
-          <input type="email" id="mail" placeholder="Type your mail" required />
+          <input type="text" id="title" placeholder="Create a title" required />
+          <input
+            type="text"
+            id="businessName"
+            placeholder="Type your Business name"
+            required
+          />
+          <input
+            type="text"
+            id="category"
+            placeholder="Create a category"
+            required
+          />
+          <textarea
+            id="productDes"
+            placeholder="Create a description"
+            required
+          ></textarea>
+          <input
+            type="number"
+            id="price"
+            placeholder="Create a price"
+            required
+          />
+          <input
+            type="date"
+            id="pickupDate"
+            placeholder="Type your pick-up date"
+            required
+          />
+          <input
+            type="time"
+            id="pickupTime"
+            placeholder="Type your pick-up time"
+            required
+          />
           <button id="createButton" type="button" name="button">
             Create User
           </button>
