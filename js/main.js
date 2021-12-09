@@ -1,173 +1,145 @@
-"use strict";
-
-/* ---------- Global Variables ---------- */
+// ========== GLOBAL VARIABLES ==========
 let _users = [];
 let _selectedUserId;
+const _baseUrl = "https://api.jsonbin.io/v3/b/61b1ca5701558c731cd0f890";
+const _headers = {
+  "X-Master-Key":
+    "$2b$10$T3XgiZeuMHH6lOvJetWSNOdSbY5UOGcIrSpCrknVN6fmSJt32gU4K",
+  "Content-Type": "application/json",
+};
 
-/* -------------------------------------- */
+// ========== READ ==========
 
-async function fetchUsers() {
-  const url =
-    "https://cederdorff.github.io/mdu-frontend/canvas-users/data/users.json";
-  const response = await fetch(url);
-  const data = await response.json();
-  _users = data;
-}
-
-function appendUsers(usersArray) {
-  let html = "";
-  for (const userObject of usersArray) {
-    html += /*html*/ `
-            <article>
-                <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
-                <h2>${userObject.businessName}</h2>
-                <p>${userObject.title}</p>
-                <p>Pick up time: ${userObject.pickupTime}</p>
-                <button onclick="selectUser('${userObject.id}')">Update</button>
-                <button onclick="deleteUser('${userObject.id}')">Delete</button>
-            </article>
-        `;
-  }
-  document.querySelector("#users-container").innerHTML = html;
-}
-
-/* ---------- Filter Function ---------- */
-function filterByEnrollment(type) {
-  resetFilterByCourse();
-  if (type === "all") {
-    appendUsers(_users);
-  } else {
-    const results = _users.filter((user) => user.enrollmentType === type);
-    appendUsers(results);
-  }
-}
-
-function filterByCourse(course) {
-  resetFilterByEnrollment();
-  if (course === "all") {
-    appendUsers(_users);
-  } else {
-    const results = _users.filter((user) => user.course === course);
-    appendUsers(results);
-  }
-}
-
-/* ---------- Search Function ---------- */
-function search(value) {
-  resetFilterByCourse();
-  resetFilterByEnrollment();
-  value = value.toLowerCase();
-  const results = _users.filter((user) => {
-    const name = user.name.toLowerCase();
-    if (name.includes(value)) {
-      return user;
-    }
+/**
+ * Fetchs person data from jsonbin
+ */
+async function loadUsers() {
+  const url = _baseUrl + "/latest"; // make sure to get the latest version
+  const response = await fetch(url, {
+    headers: _headers,
   });
-  appendUsers(results);
-}
-
-function resetFilterByCourse() {
-  document.querySelector("#filterByCourse").value = "all";
-}
-
-function resetFilterByEnrollment() {
-  document.querySelector("#filterByEnrollment").value = "all";
-}
-
-function addNewUser() {
-  const name = document.querySelector("#name").value;
-  const mail = document.querySelector("#mail").value;
-  const img = document.querySelector("#img").value;
-  const id = Date.now(); // dummy generated user id
-
-  const newUser = {
-    avatarUrl: img,
-    createdAt: id,
-    email: mail,
-    id: id,
-    loginId: mail,
-    name: name,
-    sortableName: generateSortableName(name),
-  };
-
-  _users.push(newUser);
+  const data = await response.json();
+  console.log(data);
+  _users = data.record;
   appendUsers(_users);
-  navigateTo("users");
 }
+loadUsers();
 
-function generateSortableName(name) {
-  const nameStringArray = name.split(" ");
-  const lastname = nameStringArray.pop();
-  const firstnames = nameStringArray.join(" ");
-  return `${lastname}, ${firstnames}`;
-}
-
-function selectUser(id) {
-  _selectedUserId = id;
-  const userToEdit = _users.find((user) => user.id == id);
-  document.querySelector("#nameEdit").value = userToEdit.name;
-  document.querySelector("#mailEdit").value = userToEdit.email;
-  document.querySelector("#imgEdit").value = userToEdit.avatarUrl;
-  navigateTo("update");
-}
-
-function updateUser() {
-  const userToEdit = _users.find((user) => user.id == _selectedUserId);
-  userToEdit.name = document.querySelector("#nameEdit").value;
-  userToEdit.course = document.querySelector("#courseEdit").value;
-  userToEdit.email = document.querySelector("#mailEdit").value;
-  userToEdit.loginId = userToEdit.email;
-  userToEdit.enrollmentType = document.querySelector(
-    "#enrollmentTypeEdit"
-  ).value;
-  userToEdit.avatarUrl = document.querySelector("#imgEdit").value;
-  userToEdit.sortableName = generateSortableName(userToEdit.name);
-  appendUsers(_users);
-  navigateTo("users");
-}
-
-function deleteUser(id) {
-  const deleteUser = confirm("Are you sure you want to delete user?");
-  if (deleteUser) {
-    _users = _users.filter((user) => user.id != id);
-    appendUsers(_users);
+/**
+ * Appends users to the DOM
+ * @param {Array} users
+ */
+function appendUsers(users) {
+  let htmlTemplate = "";
+  for (const user of users) {
+    htmlTemplate += /*html*/ `
+      <article>
+        <h3>${user.name}</h3>
+        <p><a href="mailto:${user.mail}">${user.mail}</a></p>
+        <button onclick="selectUser(${user.id})">Update</button>
+        <button onclick="deleteUser(${user.id})">Delete</button>
+      </article>
+      `;
   }
+  document.querySelector("#grid-users").innerHTML = htmlTemplate;
+  showLoader(false);
 }
 
-function showDetailView(id) {
-  const userObject = _users.find((user) => user.id == id);
-  document.querySelector("#detailView h2").innerHTML = userObject.name;
-  document.querySelector("#detailViewContainer").innerHTML = /*html*/ `
-        <img src="${userObject.avatarUrl}" onclick="showDetailView('${
-    userObject.id
-  }')">
-        <article>
-            <h2>${userObject.name}</h2>
-            <p>Sortable name: ${userObject.sortableName}</p>
-            <a href="mailto:${userObject.email}">${userObject.email}</a>
-            <p>${userObject.enrollmentType.replace("Enrollment", "")}</p>
-            <p>Course: ${userObject.course}</p>
-            <p>User id: ${userObject.id}</p>
-        </article>
-    `;
-  navigateTo("detailView");
-}
+// ========== CREATE ==========
 
-if (!_selectedUserId) {
+/**
+ * Creates a new user with properties: name, mail & id
+ */
+async function createUser() {
+  // references to input fields
+  let nameInput = document.querySelector("#name");
+  let mailInput = document.querySelector("#mail");
+  // dummy generated user id
+  const userId = Date.now();
+  // declaring a new user object
+  const newUser = {
+    name: nameInput.value,
+    mail: mailInput.value,
+    id: userId,
+  };
+  // pushing the new user object to the _users array
+  _users.push(newUser);
+  // wait for update
+  await updateJSONBIN(_users);
+  // reset
+  nameInput.value = "";
+  mailInput.value = "";
+  //navigating back
   navigateTo("#/");
 }
 
-function showRandomUser() {
-  const randomUser = _users[Math.floor(Math.random() * _users.length)];
-  console.log(randomUser);
-  showDetailView(randomUser.id);
+// ========== UPDATE ==========
+
+/**
+ * Finds a display selected user by given.
+ * @param id
+ */
+function selectUser(id) {
+  _selectedUserId = id;
+  // find user by given user id
+  const user = _users.find((user) => user.id == _selectedUserId);
+  // references to the input fields
+  let nameInput = document.querySelector("#name-update");
+  let mailInput = document.querySelector("#mail-update");
+  // set indout values with selected user values
+  nameInput.value = user.name;
+  mailInput.value = user.mail;
+  navigateTo("#/update");
 }
 
-// ========== INIT APP ==========
-
-async function initApp() {
-  await fetchUsers();
-  appendUsers(_users);
+/**
+ * Updates user with values from input fields
+ */
+async function updateUser() {
+  showLoader(true);
+  // references to input fields
+  const nameInput = document.querySelector("#name-update");
+  const mailInput = document.querySelector("#mail-update");
+  // find user to update by given user id
+  const userToUpdate = _users.find((user) => user.id === _selectedUserId);
+  // update values of user in array
+  userToUpdate.name = nameInput.value;
+  userToUpdate.mail = mailInput.value;
+  // wait for update
+  await updateJSONBIN(_users);
+  // reset
+  nameInput.value = "";
+  mailInput.value = "";
+  //navigating back
+  navigateTo("#/");
 }
 
-initApp();
+// ========== DELETE ==========
+/**
+ * Deletes user by given user id
+ * @param id
+ */
+async function deleteUser(id) {
+  showLoader(true);
+  _users = _users.filter((user) => user.id !== id);
+  await updateJSONBIN(_users);
+}
+
+// ========== Services ==========
+/**
+ * Updates the data source on jsonbin with a given users arrays
+ * @param {Array} users
+ */
+async function updateJSONBIN(users) {
+  // put users array to jsonbin
+  const response = await fetch(_baseUrl, {
+    method: "PUT",
+    headers: _headers,
+    body: JSON.stringify(users),
+  });
+  // waiting for the result
+  const result = await response.json(); // the new updated users array from jsonbin
+  console.log(result);
+  //updating the DOM with the new fetched users
+  appendUsers(result.record);
+}

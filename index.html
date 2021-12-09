@@ -20,36 +20,43 @@
   <body>
     <!-------------- Navigation -------------->
     <nav class="tabbar">
-      <a href="#/"><img src="./img/logo.png" alt="logo" class="logo"></a>
+      <a class="logo" href="#/"><img src="./img/logo.png" alt="logo" /></a>
       <a class="nav-link" href="#/">Home</a>
       <a class="nav-link" href="#/product">Products</a>
-      <a class="nav-link" href="#/create-products">Create</a>
+      <a class="nav-link" href="#/create">Create</a>
       <a class="nav-link" href="#/profile">Profile</a>
       <a class="right" id="btn-logout">Logout</a>
     </nav>
-    
 
     <main id="appRoot">
       <!-------------- Pages -------------->
 
       <!-- login page -->
       <section id="login" class="page">
-        
-
         <div class="flex-container">
-        <div class="login-container">
-          <h1>WasteLess business!</h1>
-          <p>Be a member today! <a class="nav-link" href="#/signup">Go to Sign up</a></p>
-          <p class="login-message"></p>
-        <form>
-          <input id="login-username" type="text" placeholder="Type username" />
-          <input id="login-password" type="password" placeholder="Password" />
-          <button type="button" id="btn-login">Login</button>
-        </form>
-      </div>
-      <img src="./img/home_front_img.png" class="madkurv">
-    </div>
-
+          <div class="login-container">
+            <h1>WasteLess business!</h1>
+            <p>
+              Be a member today!
+              <a class="nav-link" href="#/signup">Go to Sign up</a>
+            </p>
+            <p class="login-message"></p>
+            <form>
+              <input
+                id="login-username"
+                type="text"
+                placeholder="Type username"
+              />
+              <input
+                id="login-password"
+                type="password"
+                placeholder="Password"
+              />
+              <button type="button" id="btn-login">Login</button>
+            </form>
+          </div>
+          <img src="./img/home_front_img.png" class="madkurv" />
+        </div>
       </section>
 
       <!-- signup page -->
@@ -111,153 +118,50 @@
       <section id="product" class="page">
         <h2>Products</h2>
         <p>My Snfjhgcfxdhjkl</p>
-
-        <!-- pages -->
-        <!-- users page -->
-        <section class="tools-grid">
-          <!-- filter function -->
-          <label for="filterByEnrollment"
-            >Filter by:
-            <select
-              id="filterByEnrollment"
-              onchange="filterByEnrollment(this.value)"
-            >
-              <option value="all" selected>All</option>
-              <option value="StudentEnrollment">Student</option>
-              <option value="TeacherEnrollment">Teacher</option>
-            </select>
-          </label>
-          <!-- search function -->
-          <input
-            type="search"
-            placeholder="Search"
-            onkeyup="search(this.value)"
-            onsearch="search('')"
-          />
-        </section>
-        <section id="users-container" class="grid-container"></section>
-
-        <!-- update page -->
-        <section id="update" class="page">
-          <header class="topbar">
-            <a class="left" href="#users">Back</a>
-            <h2>Update user</h2>
-          </header>
-          <form>
-            <input
-              id="nameEdit"
-              type="text"
-              name="name"
-              placeholder="Type name"
-            />
-            <select id="courseEdit">
-              <option selected disabled>Select course</option>
-              <option value="admin">Admin</option>
-              <option value="MDU-E20FRONT1">Frontend 1</option>
-              <option value="MDC-E20FRONT2">Frontend 2</option>
-            </select>
-            <input
-              id="mailEdit"
-              type="email"
-              name="mail"
-              placeholder="Type email"
-            />
-            <select id="enrollmentTypeEdit">
-              <option selected disabled>Select enrollment type</option>
-              <option value="StudentEnrollment">Student</option>
-              <option value="TeacherEnrollment">Teacher</option>
-            </select>
-            <input
-              id="imgEdit"
-              type="text"
-              name="img"
-              placeholder="Paste image URL"
-            />
-            <button type="button" name="button" onclick="updateUser()">
-              Update user
-            </button>
-          </form>
-        </section>
-
-        <section id="random" class="page">
-          <header class="topbar">
-            <h2>Show random user</h2>
-          </header>
-          <section class="grid-container">
-            <button type="button" name="button" onclick="showRandomUser()">
-              Display random user
-            </button>
-          </section>
-        </section>
-
-        <!-- update page -->
-        <section id="detailView" class="page">
-          <header class="topbar">
-            <a class="left" onclick="goBack()" href="#">Back</a>
-            <h2>Detail View</h2>
-          </header>
-          <section id="detailViewContainer" class="detail-grid"></section>
-        </section>
+        <div id="grid-users" class="grid-container"></div>
+        <a href="#/create" class="nav-link right">Create</a>
       </section>
 
       <!-- create -->
-      <section id="create-products" class="page">
+      <section id="create" class="page">
         <h2>Create products</h2>
         <p>
           You can search your food with others.<br />
           Create, delete and update your post!
         </p>
-
-        <!-- <form>
-          <input id="name" type="text" name="name" placeholder="Product title">
-          
-          <input id="category" type="text" name="category" placeholder="Category">
-
-          <input id="price" type="number" name="price" placeholder="Price">
-
-          <textarea id="text-area" type="text" placeholder="Description"></textarea>
-
-          <input id="img" type="text" name="img" placeholder="Paste image URL">
-
-          <button type="button" name="button" onclick="addNewUser()">Add new</button>
-        </form>-->
-
         <form>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            placeholder="Product title"
-          />
-
-          <input id="mail" type="email" name="mail" placeholder="Type email" />
-
-
-          <input
-            id="category"
-            type="text"
-            name="category"
-            placeholder="Category"
-          />
-
-          <textarea
-            id="text-area"
-            type="text"
-            placeholder="Description"
-          ></textarea>
-
-          <input
-            id="img"
-            type="text"
-            name="img"
-            placeholder="Paste image URL"
-          />
-          <button type="button" name="button" onclick="addNewUser()">
-            Add new
+          <input type="text" id="name" placeholder="Type your name" required />
+          <input type="email" id="mail" placeholder="Type your mail" required />
+          <button type="button" name="button" onclick="createUser()">
+            Create User
           </button>
         </form>
+      </section>
 
-        <section id="users-container" class="grid-container"></section>
+      <!-- edir user page -->
+      <section id="update" class="page">
+        <header class="topbar">
+          <a href="#/" class="nav-link left">Back</a>
+          <h2>Update user</h2>
+          <a class="right" onclick="updateUser()">Update</a>
+        </header>
+        <form>
+          <input
+            type="text"
+            id="name-update"
+            placeholder="Type your name"
+            required
+          />
+          <input
+            type="email"
+            id="mail-update"
+            placeholder="Type your mail"
+            required
+          />
+          <button type="button" name="button" onclick="updateUser()">
+            Update User
+          </button>
+        </form>
       </section>
 
       <!-- profile page -->
@@ -267,19 +171,15 @@
       </section>
     </main>
 
-
-
     <footer>
-      <div class="footer-container">
-      
-
-      </div>
-
+      <div class="footer-container"></div>
     </footer>
 
     <script src="./js/app.js" type="module"></script>
     <!-- SPA functionality  -->
     <script src="./js/spa.js"></script>
+    <!-- Router functionality  -->
+    <script src="js/router.js"></script>
     <!-- main js file -->
     <script src="./js/main.js"></script>
   </body>
