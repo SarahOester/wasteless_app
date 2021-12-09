@@ -34,8 +34,11 @@ function appendUsers(users) {
   for (const user of users) {
     htmlTemplate += /*html*/ `
       <article>
-        <h3>${user.name}</h3>
-        <p><a href="mailto:${user.mail}">${user.mail}</a></p>
+        <img src="${user.avatarImg}">
+        <h3>${user.businessName}</h3>
+        <p>${user.title}</p>
+        <p>${user.pickupDate} ${user.pickupTime}</p>
+        <h2>${user.price}</h2>
         <button onclick="selectUser(${user.id})">Update</button>
         <button onclick="deleteUser(${user.id})">Delete</button>
       </article>
@@ -48,20 +51,31 @@ function appendUsers(users) {
 // ========== CREATE ==========
 
 /**
- * Creates a new user with properties: name, mail & id
+ * Creates a new user with properties: avatarImg, title, businessName, category ...
  */
 async function createUser() {
-
-    console.log("Hey");
+  console.log("Hey");
   // references to input fields
-  let nameInput = document.querySelector("#name");
-  let mailInput = document.querySelector("#mail");
+  let avatarImgInput = document.querySelector("#avatarImg");
+  let titleInput = document.querySelector("#title");
+  let businessNameInput = document.querySelector("#businessName");
+  let categoryInput = document.querySelector("#category");
+  let productDesInput = document.querySelector("#productDes");
+  let priceInput = document.querySelector("#price");
+  let pickupDateInput = document.querySelector("#pickupDate");
+  let pickupTimeInput = document.querySelector("#pickupTime");
   // dummy generated user id
   const userId = Date.now();
   // declaring a new user object
   const newUser = {
-    name: nameInput.value,
-    mail: mailInput.value,
+    avatarImg: avatarImgInput.value,
+    title: titleInput.value,
+    businessName: businessNameInput.value,
+    category: categoryInput.value,
+    productDes: productDesInput.value,
+    price: priceInput.value,
+    pickupDate: pickupDateInput.value,
+    pickupTime: pickupTimeInput.value,
     id: userId,
   };
   // pushing the new user object to the _users array
@@ -69,8 +83,14 @@ async function createUser() {
   // wait for update
   await updateJSONBIN(_users);
   // reset
-  nameInput.value = "";
-  mailInput.value = "";
+  avatarImgInput.value = "";
+  titleInput.value = "";
+  businessNameInput.value = "";
+  categoryInput.value = "";
+  productDesInput.value = "";
+  priceInput.value = "";
+  pickupDateInput.value = "";
+  pickupTimeInput.value = "";
   //navigating back
   navigateTo("#/product");
 }
@@ -86,11 +106,23 @@ function selectUser(id) {
   // find user by given user id
   const user = _users.find((user) => user.id == _selectedUserId);
   // references to the input fields
-  let nameInput = document.querySelector("#name-update");
-  let mailInput = document.querySelector("#mail-update");
+  let avatarImgInput = document.querySelector("#avatarImg-update");
+  let titleInput = document.querySelector("#title-update");
+  let businessNameInput = document.querySelector("#businessName-update");
+  let categoryInput = document.querySelector("#category-update");
+  let productDesInput = document.querySelector("#productDes-update");
+  let priceInput = document.querySelector("#price-update");
+  let pickupDateInput = document.querySelector("#pickupDate-update");
+  let pickupTimeInput = document.querySelector("#pickupTime-update");
   // set indout values with selected user values
-  nameInput.value = user.name;
-  mailInput.value = user.mail;
+  avatarImgInput.value = user.avatarImg;
+  titleInput.value = user.title;
+  businessNameInput.value = user.businessName;
+  categoryInput.value = user.category;
+  productDesInput.value = user.productDes;
+  priceInput.value = user.price;
+  pickupDateInput.value = user.pickupDate;
+  pickupTimeInput.value = user.pickupTime;
   navigateTo("#/update");
 }
 
@@ -100,18 +132,36 @@ function selectUser(id) {
 async function updateUser() {
   showLoader(true);
   // references to input fields
-  const nameInput = document.querySelector("#name-update");
-  const mailInput = document.querySelector("#mail-update");
+  const avatarImgInput = document.querySelector("#avatarImg-update");
+  const titleInput = document.querySelector("#title-update");
+  const businessNameInput = document.querySelector("#businessName-update");
+  const categoryInput = document.querySelector("#category-update");
+  const productDesInput = document.querySelector("#productDes-update");
+  const priceInput = document.querySelector("#price-update");
+  const pickupDateInput = document.querySelector("#pickupDate-update");
+  const pickupTimeInput = document.querySelector("#pickupTime-update");
   // find user to update by given user id
   const userToUpdate = _users.find((user) => user.id === _selectedUserId);
   // update values of user in array
-  userToUpdate.name = nameInput.value;
-  userToUpdate.mail = mailInput.value;
+  userToUpdate.avatarImg = avatarImgInput.value;
+  userToUpdate.title = titleInput.value;
+  userToUpdate.businessName = businessNameInput.value;
+  userToUpdate.category = categoryInput.value;
+  userToUpdate.productDes = productDesInput.value;
+  userToUpdate.price = priceInput.value;
+  userToUpdate.pickupDate = pickupDateInput.value;
+  userToUpdate.pickupTime = pickupTimeInput.value;
   // wait for update
   await updateJSONBIN(_users);
   // reset
-  nameInput.value = "";
-  mailInput.value = "";
+  avatarImgInput.value = "";
+  titleInput.value = "";
+  businessNameInput.value = "";
+  categoryInput.value = "";
+  productDesInput.value = "";
+  priceInput.value = "";
+  pickupDateInput.value = "";
+  pickupTimeInput.value = "";
   //navigating back
   navigateTo("#/");
 }
@@ -149,14 +199,13 @@ async function updateJSONBIN(users) {
 document.querySelector("#createButton").onclick = () => createUser();
 document.querySelector("#updatePage").onclick = () => updateUser();
 
-
 async function login() {
   const username = document.querySelector("#login-username").value;
   const password = document.querySelector("#login-password").value;
   const loginObject = { username: username, password: password };
   console.log(loginObject);
   const response = await fetch(
-    "http://localhost:3000/php-login-service/?action=login",
+    "http://localhost:3000/wasteless_app/php-login-service/?action=login",
     {
       method: "POST",
       body: JSON.stringify(loginObject),
@@ -203,7 +252,7 @@ async function signup() {
   console.log(user);
 
   const response = await fetch(
-    "http://localhost:3000/php-login-service/?action=signup",
+    "http://localhost:3000/wasteless_app/php-login-service/?action=signup",
     {
       method: "POST",
       body: JSON.stringify(user),
