@@ -130,9 +130,11 @@
           Create, delete and update your post!
         </p>
         <form action="index.php" method="post"> 
+        <!--<form action="upload.php" method="post" enctype="multipart/form-data">-->
           <input
             type="file"
             id="avatarImg"
+            name="fileToUpload"
             placeholder="Upload image"
             required
           />
@@ -182,6 +184,7 @@
           <button id="createButton" type="button" name="button">
             Create User
           </button>
+          <input type="submit" value="Upload File" name="submit" />
         </form>
       </section>
 

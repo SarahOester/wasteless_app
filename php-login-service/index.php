@@ -111,7 +111,6 @@ if (isset($_GET['action'])) {
     }
 }
 
-
 // +----------------------------------------------------+
 // |         Get form data to php and database          |
 // +----------------------------------------------------+
@@ -135,5 +134,28 @@ echo "der er et problem med at indsætte data";
 else {
     echo "Data fungere";
 }
+
+  /*if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+
+    // Create Products
+  if ($action == "createProduct") {
+        $loginObject = json_decode(file_get_contents('php://input'));
+        $avatarImg = $loginObject->avatarImg;
+        $title = $loginObject->title;
+        $businessName = $loginObject->businessName;
+        $category = $loginObject->category;
+        $productDes = $loginObject->productDes;
+        $price = $loginObject->price;
+        $pickupDate = $loginObject->pickupDate;
+        $pickupTime = $loginObject->pickupTime;
+
+        // Get the users login information
+        $sql = "SELECT * FROM products";
+        $result = $mySQL->query($sql);
+
+        var_dump($result);
+    }
+*/
 
 ?>
