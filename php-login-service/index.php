@@ -38,7 +38,7 @@ if (isset($_GET['action'])) {
         $sql = "SELECT * FROM userlogin WHERE username = '$username' LIMIT 1";
         $result = $mySQL->query($sql);
 
-        // Check if the usernam exists
+        // Check if the username exists
         if ($result->num_rows == 1) {
             $data = $result->fetch_object();
             // Check if it is the right password for that username
@@ -111,35 +111,31 @@ if (isset($_GET['action'])) {
     }
 }
 
-
 // +----------------------------------------------------+
 // |         Get form data to php and database          |
 // +----------------------------------------------------+
 
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
 
-    $mysql = new MySQL();
-    $mysql->SetDatabase("eaaa");
-    $mysql->Connect();
+    // Create Products
+    if ($action == "createProduct") {
+        $loginObject = json_decode(file_get_contents('php://input'));
+        $avatarImg = $loginObject->avatarImg;
+        $title = $loginObject->title;
+        $businessName = $loginObject->businessName;
+        $category = $loginObject->category;
+        $productDes = $loginObject->productDes;
+        $price = $loginObject->price;
+        $pickupDate = $loginObject->pickupDate;
+        $pickupTime = $loginObject->pickupTime;
 
-    $sqlCreateTable = file_get_contents("wasteless_test.sql");
-    $mysql->mySQL->query($sqlCreateTable);
+        // Get the users login information
+        $sql = "SELECT * FROM products";
+        $result = $mySQL->query($sql);
 
-    // $database = json_decode(file_get_contents("json/Food Database.json"), true);
-    $products = $database['data'];
-
-    for($i = 1; $i < count($products); $i++) {
-        $id = $products[$i]['Id'];
-        $avatarImg = $products[$i]['avatarImg'];
-        $title = $products[$i]['title'];
-        $businessName= $products[$i]['busine$businessName'];
-        $category = $products[$i]['category'];
-        $productDes = $products[$i]['productDes'];
-        $price = $products[$i]['price'];
-        $pickupDate = $products[$i]['pickupDate'];
-        $PickupTime = $products[$i]['PickupTime'];
-
-        $sql = "INSERT INTO products (id, avatarImg, title, businessName, category, productDes, price, pickupDate, pickupTime) VALUES ('$id','$avatarImg','$title','$businessName','$category','$productDes','$price','$pickupDate','$pickupTime')";
-        echo $mysql->mySQL->query($sql);
+        var_dump($result);
     }
+}
 
 ?>
