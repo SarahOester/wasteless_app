@@ -128,11 +128,16 @@
           You can search your food with others.<br />
           Create, delete and update your post!
         </p>
-        <form>
+        <form
+          action="php/upload.php"
+          method="post"
+          enctype="multipart/form-data"
+        >
           <input
             type="file"
             src="#"
             id="avatarImg"
+            name="fileToUpload"
             placeholder="Upload image"
             required
           />
@@ -175,6 +180,8 @@
           <button id="createButton" type="button" name="button">
             Create User
           </button>
+
+          <input type="submit" value="Upload File" name="submit" />
         </form>
       </section>
 
