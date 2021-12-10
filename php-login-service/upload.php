@@ -5,8 +5,8 @@ include("mysql.php");
 
 // Funktion til at uploade billeder
 
-$file = $_FILES["fileToUpload"];
-$targetFolder = "profilepicture/";
+$file = $_FILES["fileToUpload"]; 
+$targetFolder = "../profilepicture/";
 $fileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 $fileName = basename($file["name"]);
 $fileSize = $file["size"];
