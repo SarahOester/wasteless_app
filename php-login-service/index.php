@@ -38,7 +38,7 @@ if (isset($_GET['action'])) {
         $sql = "SELECT * FROM userlogin WHERE username = '$username' LIMIT 1";
         $result = $mySQL->query($sql);
 
-        // Check if the usernam exists
+        // Check if the username exists
         if ($result->num_rows == 1) {
             $data = $result->fetch_object();
             // Check if it is the right password for that username
@@ -116,6 +116,24 @@ if (isset($_GET['action'])) {
 // |         Get form data to php and database          |
 // +----------------------------------------------------+
 
+$con = new mysqli($server,$username,$password,$database);
+if($con) {
+    echo "Håber det her virker";
+    // tjekker om serveren er connecet for at se om der kommer nogle errors
+}
 
+$businessName = $_POST['businessName'];
+$title = $_POST['title'];
+//samler form dataen i variables
+//Her indsætter vi det til vores table
+$qry = "INSERT INTO `products`(`businessName`,`title`) VALUES ('$businessName','$title')";
+
+$insert = mysqli_query($con,$qry);
+if($insert) {
+echo "der er et problem med at indsætte data";
+}
+else {
+    echo "Data fungere";
+}
 
 ?>

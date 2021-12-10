@@ -129,17 +129,24 @@
           You can search your food with others.<br />
           Create, delete and update your post!
         </p>
-        <form>
+        <form action="index.php" method="post"> 
           <input
             type="file"
             id="avatarImg"
             placeholder="Upload image"
             required
           />
-          <input type="text" id="title" placeholder="Create a title" required />
+          <input type="text" 
+          id="title" 
+          name="title"
+          placeholder="Create a title" 
+          required 
+          />
+
           <input
             type="text"
             id="businessName"
+            name="businessName"
             placeholder="Type your Business name"
             required
           />
