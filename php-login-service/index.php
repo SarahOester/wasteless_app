@@ -117,5 +117,29 @@ if (isset($_GET['action'])) {
 // +----------------------------------------------------+
 
 
+    $mysql = new MySQL();
+    $mysql->SetDatabase("eaaa");
+    $mysql->Connect();
+
+    $sqlCreateTable = file_get_contents("wasteless_test.sql");
+    $mysql->mySQL->query($sqlCreateTable);
+
+    // $database = json_decode(file_get_contents("json/Food Database.json"), true);
+    $products = $database['data'];
+
+    for($i = 1; $i < count($products); $i++) {
+        $id = $products[$i]['Id'];
+        $avatarImg = $products[$i]['avatarImg'];
+        $title = $products[$i]['title'];
+        $businessName= $products[$i]['busine$businessName'];
+        $category = $products[$i]['category'];
+        $productDes = $products[$i]['productDes'];
+        $price = $products[$i]['price'];
+        $pickupDate = $products[$i]['pickupDate'];
+        $PickupTime = $products[$i]['PickupTime'];
+
+        $sql = "INSERT INTO products (id, avatarImg, title, businessName, category, productDes, price, pickupDate, pickupTime) VALUES ('$id','$avatarImg','$title','$businessName','$category','$productDes','$price','$pickupDate','$pickupTime')";
+        echo $mysql->mySQL->query($sql);
+    }
 
 ?>
