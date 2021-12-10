@@ -65,7 +65,7 @@ p {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  top: 25px;
+  top: 35px;
 }
 
 .tabbar2 {
@@ -85,6 +85,7 @@ p {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 700;
+  
 }
 
 /* Change the color of links on hover */
@@ -240,7 +241,7 @@ input {
   display: block;
 }
 
-#text-area {
+#productDes {
   margin: 1em auto;
   width: 100%;
   max-width: 350px;
