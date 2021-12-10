@@ -1,10 +1,10 @@
 import { navigateTo } from "./router.js";
 let _users = [];
 let _selectedUserId;
-const _baseUrl = "https://api.jsonbin.io/v3/b/61b3150e0ddbee6f8b1aa830";
+const _baseUrl = "https://api.jsonbin.io/v3/b/61b1ca5701558c731cd0f890";
 const _headers = {
   "X-Master-Key":
-    "$2b$10$HvdH7Du06WMNs0sAgZlD7eB03KvfEjNrT8uiRAPd7KC5vHmDCB8y.",
+    "$2b$10$T3XgiZeuMHH6lOvJetWSNOdSbY5UOGcIrSpCrknVN6fmSJt32gU4K",
   "Content-Type": "application/json",
 };
 
@@ -35,7 +35,7 @@ function appendUsers(users) {
   for (const user of users) {
     htmlTemplate += /*html*/ `
       <article>
-      <img src="${user.avatarImg}">
+        <img src="${user.avatarImg}">
         <h3>${user.businessName}</h3>
         <p>${user.title}</p>
         <p>${user.pickupDate} ${user.pickupTime}</p>
@@ -52,10 +52,10 @@ function appendUsers(users) {
 // ========== CREATE ==========
 
 /**
- * Creates a new user with properties: name, mail & id
+ * Creates a new user with properties: avatarImg, title, businessName, category ...
  */
 async function createUser() {
-
+  console.log("Hey");
   // references to input fields
   let avatarImgInput = document.querySelector("#avatarImg");
   let titleInput = document.querySelector("#title");
@@ -131,7 +131,6 @@ function selectUser(id) {
  * Updates user with values from input fields
  */
 async function updateUser() {
-  console.log("hejehehheje")
   showLoader(true);
   // references to input fields
   const avatarImgInput = document.querySelector("#avatarImg-update");
@@ -201,14 +200,13 @@ async function updateJSONBIN(users) {
 document.querySelector("#createButton").onclick = () => createUser();
 document.querySelector("#updatePage").onclick = () => updateUser();
 
-
 async function login() {
   const username = document.querySelector("#login-username").value;
   const password = document.querySelector("#login-password").value;
   const loginObject = { username: username, password: password };
   console.log(loginObject);
   const response = await fetch(
-    "http://localhost:3000/php-login-service/?action=login",
+    "http://localhost:3000/wasteless_app/php-login-service/?action=login",
     {
       method: "POST",
       body: JSON.stringify(loginObject),
@@ -255,7 +253,7 @@ async function signup() {
   console.log(user);
 
   const response = await fetch(
-    "http://localhost:3000/php-login-service/?action=signup",
+    "http://localhost:3000/wasteless_app/php-login-service/?action=signup",
     {
       method: "POST",
       body: JSON.stringify(user),
@@ -282,6 +280,6 @@ document.querySelector("#btn-login").onclick = () => login();
 document.querySelector("#btn-logout").onclick = () => logout();
 document.querySelector("#btn-signup").onclick = () => signup();
 
-//kalder på selectUser fordi det her script er module
+//kalder på selectUser fordi det her script er et module i htmlen
 window.selectUser = (id) => selectUser(id);
 window.deleteUser = (id) => deleteUser(id);
