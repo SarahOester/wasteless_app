@@ -65,9 +65,10 @@
         </header>
         <p>Sign up for Business</p>
         <p class="signup-message"></p>
-        <form>
+        <form action="upload.php" method="post" enctype="multipart/form-data">
           <input
             id="signup-businessName"
+            name="fileToUpload"
             type="text"
             name="businessName"
             placeholder="Type your business name"
