@@ -1,10 +1,10 @@
 import { navigateTo } from "./router.js";
 let _users = [];
 let _selectedUserId;
-const _baseUrl = "https://api.jsonbin.io/v3/b/61b1ca5701558c731cd0f890";
+const _baseUrl = "https://api.jsonbin.io/v3/b/61b3150e0ddbee6f8b1aa830";
 const _headers = {
   "X-Master-Key":
-    "$2b$10$T3XgiZeuMHH6lOvJetWSNOdSbY5UOGcIrSpCrknVN6fmSJt32gU4K",
+    "$2b$10$HvdH7Du06WMNs0sAgZlD7eB03KvfEjNrT8uiRAPd7KC5vHmDCB8y.",
   "Content-Type": "application/json",
 };
 
@@ -124,7 +124,7 @@ function selectUser(id) {
   priceInput.value = user.price;
   pickupDateInput.value = user.pickupDate;
   pickupTimeInput.value = user.pickupTime;
-  navigateTo("#/update");
+  navigateTo("#/");
 }
 
 /**
@@ -164,7 +164,7 @@ async function updateUser() {
   pickupDateInput.value = "";
   pickupTimeInput.value = "";
   //navigating back
-  navigateTo("#/");
+  navigateTo("#/update");
 }
 
 // ========== DELETE ==========
