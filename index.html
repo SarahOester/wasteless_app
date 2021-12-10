@@ -128,10 +128,11 @@
           You can search your food with others.<br />
           Create, delete and update your post!
         </p>
-        <form>
+        <form method="post" action="index.php">
           <input
             type="file"
             src="#"
+            name="avatarImg"
             id="avatarImg"
             placeholder="Upload image"
             required
@@ -139,6 +140,7 @@
           <input type="text" id="title" placeholder="Create a title" required />
           <input
             type="text"
+            name="businessName"
             id="businessName"
             placeholder="Type your Business name"
             required
@@ -146,29 +148,34 @@
           <input
             type="text"
             id="category"
+            name="category"
             placeholder="Create a category"
             required
           />
           <textarea
             id="productDes"
+            name="productDes"
             placeholder="Create a description"
             required
           ></textarea>
           <input
             type="number"
             id="price"
+            name="price"
             placeholder="Create a price"
             required
           />
           <input
             type="date"
             id="pickupDate"
+            name="pickupDate"
             placeholder="Type your pick-up date"
             required
           />
           <input
             type="time"
             id="pickupTime"
+            name="pickupTime"
             placeholder="Type your pick-up time"
             required
           />
