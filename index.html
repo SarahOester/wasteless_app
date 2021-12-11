@@ -129,8 +129,11 @@
           You can search your food with others.<br />
           Create, delete and update your post!
         </p>
-        <form action="index.php" method="post"> 
-        <!--<form action="upload.php" method="post" enctype="multipart/form-data">-->
+        <form
+          action="php-login-service/createProduct.php"
+          method="post"
+          enctype="multipart/form-data"
+        >
           <input
             type="file"
             id="avatarImg"
@@ -138,11 +141,12 @@
             placeholder="Upload image"
             required
           />
-          <input type="text" 
-          id="title" 
-          name="title"
-          placeholder="Create a title" 
-          required 
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Create a title"
+            required
           />
 
           <input
@@ -155,36 +159,40 @@
           <input
             type="text"
             id="category"
+            name="category"
             placeholder="Create a category"
             required
           />
           <textarea
             id="productDes"
+            name="productDes"
             placeholder="Create a description"
             required
           ></textarea>
           <input
             type="number"
             id="price"
+            name="price"
             placeholder="Create a price"
             required
           />
           <input
             type="date"
             id="pickupDate"
+            name="pickupDate"
             placeholder="Type your pick-up date"
             required
           />
           <input
             type="time"
             id="pickupTime"
+            name="pickupTime"
             placeholder="Type your pick-up time"
             required
           />
-          <button id="createButton" type="button" name="button">
+          <button type="button" id="createButton" name="submit">
             Create User
           </button>
-          <input type="submit" value="Upload File" name="submit" />
         </form>
       </section>
 

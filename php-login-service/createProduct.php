@@ -1,56 +1,91 @@
 <?php
+    var_dump($_POST);
+    // ['title']
+    exit;
 
-session_start();
+    // Start sessions
+    session_start();
 
-include("mysql.php");
+    include("mysql.php");
 
-// +----------------------------------------------------+
-// |         Get form data to php and database          |
-// +----------------------------------------------------+
+    // +----------------------------------------------------+
+    // |         Get form data to php and database          |
+    // +----------------------------------------------------+
 
-    $mysql = new MySQL();
-    $mysql->Connect();
+    if (isset($_GET['action'])) {
+    $action = $_GET['action'];
 
-    // $sqlCreateTable = file_get_contents("wasteless_test.sql");
-    // $sql = "SELECT * FROM products";
-    // $productresult = $mySQL->query($sql);
+        // CREATE PRODUTCS
+        if ($action == "signup") {
+            $loginObject = json_decode(file_get_contents('php://input'));
+            $avatarImg = $loginObject->avatarImg;
+            $title = $loginObject->title;
+            $businessName = $loginObject->businessName;
+            $category = $loginObject->category;
+            $productDes = $loginObject->productDes;
+            $price = $loginObject->price;
+            $pickupDate = $loginObject->pickupDate;
+            $pickupTime = $loginObject->pickupTime;
+
+            //Put into database
+            $sql = "CALL CreateProduct('$avatarImg', '$title', '$businessName', '$category', '$productDes', '$price', '$pickupDate', '$pickupTime')";
+                        if ($mySQL->query($sql) === TRUE) {
+                            $response['newProductCreated'] = TRUE;
+                            echo json_encode($response);
+                        } else {
+                            $response['newProductCreated'] = FALSE;
+                            $response['error'] = "Was not able to create a new product.";
+                            echo json_encode($response);
+                        }
+            }
+    }
+   
+    // $mysql = new MySQL();
+    // $mysql->Connect();
+
+    
+
+    // if (!empty($avatarImg) && !empty($title) && !empty($businessName) && !empty($category) && !empty($productDes) && !empty($price) && !empty($pickupDate) && !empty($pickupTime)) {
+            
+    //     }
+
+    // $sql = "Call CreateProduct('avatarimgVar', 'Brød2', 'Brødhus2', 'Brød kate', 'kdsjfsjdhks', 12, '2021-12-01', '12:12:12')";
+    // $mySQL->query($sql);
+    
 
 
-    $id = $products[$i]['Id'];
-    $avatarImg = $products[$i]['avatarImg'];
-    $title = $products[$i]['title'];
-    $businessName = $products[$i]['businessName'];
-    $category = $products[$i]['category'];
-    $productDes = $products[$i]['productDes'];
-    $price = $products[$i]['price'];
-    $pickupDate = $products[$i]['pickupDate'];
-    $pickupTime = $products[$i]['pickupTime'];
 
-    $sql = "INSERT INTO products (id, avatarImg, title, businessName, category, productDes, price, pickupDate, pickupTime) 
-        VALUES ('$id','$avatarImg','$title','$businessName','$category','$productDes','$price','$pickupDate','$pickupTime')";
 
-    // $sql = "CALL CreateProduct('$avatarImg', '$title', '$businessName', '$category', '$productDes', '$price', '$pickupDate', '$pickupTime')";
-    var_dump($sql);
 
-    // $database = json_decode(file_get_contents("json/Food Database.json"), true);
-    // $json = json_decode(file_get_contents("fileName.json"), true);
-    // $products = $database['data'];
 
-    // for($i = 1; $i < count($products); $i++) {
-    //     $id = $products[$i]['Id'];
-    //     $avatarImg = $products[$i]['avatarImg'];
-    //     $title = $products[$i]['title'];
-    //     $businessName= $products[$i]['busine$businessName'];
-    //     $category = $products[$i]['category'];
-    //     $productDes = $products[$i]['productDes'];
-    //     $price = $products[$i]['price'];
-    //     $pickupDate = $products[$i]['pickupDate'];
-    //     $PickupTime = $products[$i]['PickupTime'];
 
-    //     $sql = "INSERT INTO products (id, avatarImg, title, businessName, category, productDes, price, pickupDate, pickupTime) 
-    //     VALUES ('$id','$avatarImg','$title','$businessName','$category','$productDes','$price','$pickupDate','$pickupTime')";
-    //     echo $mysql->mySQL->query($sql);
+    // // Get access to the FileUpload Class
+    // require "src/fileUpload.php";
+
+    // if(isset($_POST['action'])) {
+    //     // If the 'upload' action is called, then do this
+    //     if($_POST['action'] == "upload") {
+    //         // Creates a new instance of the FileUpload class
+    //         $newUpload = new FileUpload($_FILES['fileToUpload']);
+
+    //         // Check if file type is an accepted image file format
+    //         $acceptedFileTypes = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
+    //         if(in_array($newUpload->GetFileType(), $acceptedFileTypes)) {
+
+    //             // Renaming the file before uploading
+    //             $newUpload->RenameFile(date('Ymd_His'));
+
+    //             // Uploads the original file, and saves the JSON response in a session 
+    //             $_SESSION['json'] = $newUpload->UploadFile("files/original");
+    //         } else {
+    //             $data['status'] = "failed";
+    //             $data['error'] = "Wrong file type";
+    //             $_SESSION['json'] = json_encode($data);
+    //         }
+
+    //         // Redirect back to the index.php page
+    //         header("location: index.php");
+    //     }
     // }
-
 
 ?>

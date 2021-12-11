@@ -6,7 +6,7 @@ include("mysql.php");
     if($_POST['action'] == "upload") {
 
         // Variables that can be changed
-        $targetFolder = "./profilepicture";
+        $targetFolder = "../profilepicture";
         $allowedFileTypes = ["pdf", "txt"];
         $allowedImageTypes = ["jpg", "jpeg", "png", "gif"];
         $allowedMaxFileSize = 1024 * 1024 * 5; // Bytes * KiloBytes * MegaBytes
