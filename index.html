@@ -204,18 +204,62 @@
         </header>
         <form>
           <input
-            type="text"
-            id="name-update"
-            placeholder="Type your name"
-            required
-          />
-          <input
-            type="email"
-            id="mail-update"
-            placeholder="Type your mail"
-            required
-          />
-          <button type="button" name="button" onclick="updateUser()">
+          type="file"
+          id="avatarImg-update"
+          name="fileToUpload"
+          placeholder="Upload image"
+          required
+        />
+        <input
+          type="text"
+          id="title-update"
+          name="title"
+          placeholder="Create a title"
+          required
+        />
+
+        <input
+          type="text"
+          id="businessName-update"
+          name="businessName"
+          placeholder="Type your Business name"
+          required
+        />
+        <input
+          type="text"
+          id="category-update"
+          name="category"
+          placeholder="Create a category"
+          required
+        />
+        <textarea
+          id="productDes-update"
+          name="productDes"
+          placeholder="Create a description"
+          required
+        ></textarea>
+        <input
+          type="number"
+          id="price-update"
+          name="price"
+          placeholder="Create a price"
+          required
+        />
+        <input
+          type="date"
+          id="pickupDate-update"
+          name="pickupDate"
+          placeholder="Type your pick-up date"
+          required
+        />
+        <input
+          type="time"
+          id="pickupTime-update"
+          name="pickupTime"
+          placeholder="Type your pick-up time"
+          required
+        />
+          <button button type="button" name="button" id="btnUpdate">
             Update User
           </button>
         </form>

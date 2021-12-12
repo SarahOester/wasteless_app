@@ -1,12 +1,13 @@
 import { navigateTo } from "./router.js";
 let _users = [];
 let _selectedUserId;
-const _baseUrl = "https://api.jsonbin.io/v3/b/61b1ca5701558c731cd0f890";
+const _baseUrl = "https://api.jsonbin.io/v3/b/61b3150e0ddbee6f8b1aa830";
 const _headers = {
-  "X-Master-Key":
-    "$2b$10$T3XgiZeuMHH6lOvJetWSNOdSbY5UOGcIrSpCrknVN6fmSJt32gU4K",
-  "Content-Type": "application/json",
+"X-Master-Key":
+"$2b$10$HvdH7Du06WMNs0sAgZlD7eB03KvfEjNrT8uiRAPd7KC5vHmDCB8y.",
+"Content-Type": "application/json",
 };
+
 
 // ========== READ ==========
 // ========== READ ==========
@@ -96,6 +97,16 @@ async function createUser() {
   navigateTo("#/product");
 }
 
+
+function showDetailView(id) {
+  const userObject = _users.find(user => user.id == id);
+  document.querySelector("#detailView h2").innerHTML = userObject.name;
+  document.querySelector("#detailViewContainer").innerHTML = /*html*/`
+      <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
+      `;
+    navigateTo("detailView");
+}
+
 // ========== UPDATE ==========
 
 /**
@@ -115,8 +126,9 @@ function selectUser(id) {
   let priceInput = document.querySelector("#price-update");
   let pickupDateInput = document.querySelector("#pickupDate-update");
   let pickupTimeInput = document.querySelector("#pickupTime-update");
-  // set indout values with selected user values
-  avatarImgInput.value = user.avatarImg;
+  // set indout values with selected user value
+ 
+  //avatarImgInput.value = user.avatarImg;
   titleInput.value = user.title;
   businessNameInput.value = user.businessName;
   categoryInput.value = user.category;
@@ -124,14 +136,14 @@ function selectUser(id) {
   priceInput.value = user.price;
   pickupDateInput.value = user.pickupDate;
   pickupTimeInput.value = user.pickupTime;
-  navigateTo("#/");
+  navigateTo("#/update");
 }
 
 /**
  * Updates user with values from input fields
  */
 async function updateUser() {
-  showLoader(true);
+  
   // references to input fields
   const avatarImgInput = document.querySelector("#avatarImg-update");
   const titleInput = document.querySelector("#title-update");
@@ -206,7 +218,7 @@ async function login() {
   const loginObject = { username: username, password: password };
   console.log(loginObject);
   const response = await fetch(
-    "http://localhost:3000/wasteless_app/php-login-service/?action=login",
+    "http://localhost:3000/php-login-service/?action=login",
     {
       method: "POST",
       body: JSON.stringify(loginObject),
@@ -215,6 +227,7 @@ async function login() {
 
   const data = await response.json();
   console.log(data);
+ 
   if (data.authenticated) {
     console.log(data);
     localStorage.setItem("userIsAuthenticated", true);
@@ -253,7 +266,7 @@ async function signup() {
   console.log(user);
 
   const response = await fetch(
-    "http://localhost:3000/wasteless_app/php-login-service/?action=signup",
+    "http://localhost:3000/php-login-service/?action=signup",
     {
       method: "POST",
       body: JSON.stringify(user),
@@ -279,6 +292,7 @@ function resetMessage() {
 document.querySelector("#btn-login").onclick = () => login();
 document.querySelector("#btn-logout").onclick = () => logout();
 document.querySelector("#btn-signup").onclick = () => signup();
+document.querySelector("#btnUpdate").onclick = () => updateUser();
 
 //kalder på selectUser fordi det her script er et module i htmlen
 window.selectUser = (id) => selectUser(id);
