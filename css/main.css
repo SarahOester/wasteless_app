@@ -70,49 +70,6 @@
   color: var(--text-color-in-stock);
 }
 
-/* ---------- form styling ---------- */
-/* input form stryling */
-form {
-  margin: auto;
-}
-
-form button {
-  padding: 12px 15px;
-  font-size: 1em;
-  width: 100%;
-  max-width: 350px;
-}
-
-button {
-  font-weight: 300;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  border-radius: 0;
-  color: var(--text-color-light);
-  background-color: var(--green);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 0.5em 1em;
-  font-size: 0.8em;
-}
-
-input {
-  margin: 1em auto;
-  width: 100%;
-  max-width: 350px;
-  padding: 1em;
-  box-sizing: border-box;
-  display: block;
-  background: var(--white);
-  border: 0;
-}
-
-form select {
-  width: 100%;
-  background-color: var(--light-green);
-  color: var(--text-color-dark);
-}
 
 /* ---------- checkmark styling ---------- */
 
