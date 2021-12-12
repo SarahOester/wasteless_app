@@ -242,8 +242,19 @@ p {
 
 
 /* ---------- product page ---------- */
-#product {
-  background-image: url(../img/);
+#create {
+  background-image: url(../img/avokadopic.jpeg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 0 auto;
+}
+
+.h2Create {
+  color: white;
+}
+
+.pCreate {
+  color:#fff;
 }
 
 
@@ -253,7 +264,7 @@ p {
 form {
   margin: auto;
   background-color: var(--light-green);
-  padding: 2em 1em 2.5em;
+  padding: 2em 1em 0em;
 }
 
 form button {
@@ -293,6 +304,7 @@ input {
   display: block;
   background: var(--white);
   border: 0;
+  border-color: var(--green);
 }
 
 form select {
