@@ -30,6 +30,7 @@ h1 {
   letter-spacing: 3px;
   font-weight: 800;
   color: var(--green);
+  
 }
 
 h2 {
@@ -266,6 +267,7 @@ p {
   text-decoration: none;
   background-color: var(--green);
   padding: 10px;
+  font-size: 14px;
 }
 
 .h2product {
@@ -276,7 +278,9 @@ p {
   color: #568080;
 }
 
-
+.deleteButton {
+  background-color:#ee6e73;
+}
 
 /* ---------- input form stryling ---------- */
 form {

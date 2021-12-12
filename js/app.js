@@ -41,8 +41,8 @@ function appendUsers(users) {
         <p>${user.title}</p>
         <p>${user.pickupDate} ${user.pickupTime}</p>
         <h2>${user.price}</h2>
-        <button onclick="selectUser(${user.id})">Update</button>
-        <button onclick="deleteUser(${user.id})">Delete</button>
+        <button onclick="selectUser(${user.id})" >Update</button>
+        <button onclick="deleteUser(${user.id})"class="deleteButton">Delete</button>
       </article>
       `;
   }
