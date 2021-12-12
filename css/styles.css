@@ -73,6 +73,8 @@ p {
   color: #fff;
 }
 
+
+
 .tabbar {
   position: fixed;
   z-index: 9999;
@@ -241,7 +243,7 @@ p {
 }
 
 
-/* ---------- product page ---------- */
+/* ---------- create page ---------- */
 #create {
   background-image: url(../img/avokadopic.jpeg);
   background-repeat: no-repeat;
@@ -257,6 +259,22 @@ p {
   color:#fff;
 }
 
+/* ---------- product page ---------- */
+
+#productButton {
+  color: white;
+  text-decoration: none;
+  background-color: var(--green);
+  padding: 10px;
+}
+
+.h2product {
+  color: #568080;
+}
+
+.pProduct {
+  color: #568080;
+}
 
 
 
@@ -304,7 +322,6 @@ input {
   display: block;
   background: var(--white);
   border: 0;
-  border-color: var(--green);
 }
 
 form select {
@@ -331,6 +348,7 @@ textarea {
   grid-template-columns: 1fr;
   padding: 1em;
   gap: 1em;
+  margin-top: 50px;
 }
 
 @media (min-width: 600px) {
