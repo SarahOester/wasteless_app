@@ -32,6 +32,10 @@ h1 {
   color: var(--green);
 }
 
+h2 {
+  font-size: 30px;
+}
+
 h3 {
   font-weight: 400;
   letter-spacing: 1px;
@@ -93,18 +97,19 @@ p {
   font-size: 0.7em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 800;
 }
 
 /* Change the color of links on hover */
 .tabbar a:hover {
-  color: var(--tex);
+  color: black;
   text-decoration: underline;
+  font-weight: 800;
 }
 
 /* Add a color to the active/current link */
 .tabbar a.active {
-  color: var(--green);
+  color: black;
   text-decoration: underline;
   font-weight: 800;
 }
@@ -235,8 +240,16 @@ p {
   padding: 20px;
 }
 
-/* ---------- input form stryling ---------- */
 
+/* ---------- product page ---------- */
+#product {
+  background-image: url(../img/);
+}
+
+
+
+
+/* ---------- input form stryling ---------- */
 form {
   margin: auto;
   background-color: var(--light-green);
