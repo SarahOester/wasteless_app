@@ -130,11 +130,32 @@ p {
 }
 
 .dot {
-  height: 220px;
-  width: 220px;
-  background-color: #bbb;
+  height: 200px;
+  width: 200px;
+  background-color: var(--white);
   border-radius: 50%;
+  border: solid var(--green) 5px;
   display: inline-block;
+  margin: 3em 0.8em;
+  padding: 1em;
+}
+
+.dot p {
+  padding: 3em 0 0 0;
+}
+
+.dot h1 {
+  font-size: 50px;
+  margin-top: -0.1em;
+}
+
+.square {
+  height: 120px;
+  width: 160px;
+  background-color: #edb329;
+  display: inline-block;
+  margin: 3em 1.2em;
+  padding: 1em;
 }
 
 /* ---------- animations ---------- */
