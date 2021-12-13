@@ -254,6 +254,30 @@ p {
   color: #568080;
 }
 
+
+.pProduct {
+  color: #568080;
+}
+
+/* ---------- create page ---------- */
+#create {
+  background-image: url(../img/avokadopic.jpeg);
+  background-image: url(../img/netMedMad.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 0 auto;
+}
+
+.h2Create {
+  color: #568080;
+
+}
+
+.pCreate {
+  color: #568080;
+}
+
+
 /* ---------- input form stryling ---------- */
 form {
   margin: auto;
@@ -316,6 +340,10 @@ textarea {
   font-family: var(--font-family);
   font-weight: 400;
   border-style: none;
+}
+
+.deleteButton {
+  background-color:#ee6e73;
 }
 
 /* ---------- grid container styling ---------- */

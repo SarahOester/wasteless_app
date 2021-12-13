@@ -40,7 +40,7 @@ function appendUsers(users) {
         <p>Pick up time: ${user.pickupDate} kl. ${user.pickupTime}</p>
         <h2>${user.price} kr.</h2>
         <button onclick="selectUser(${user.id})">Update</button>
-        <button onclick="deleteUser(${user.id})">Delete</button>
+        <button onclick="deleteUser(${user.id})" class="deleteButton">Delete</button>
       </article>
       `;
   }
