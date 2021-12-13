@@ -253,11 +253,11 @@ p {
 }
 
 .h2Create {
-  color: white;
+  color: var(--green);
 }
 
 .pCreate {
-  color:#fff;
+  color: var(--green);
 }
 
 /* ---------- product page ---------- */
