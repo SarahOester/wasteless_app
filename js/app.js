@@ -3,13 +3,11 @@ let _users = [];
 let _selectedUserId;
 const _baseUrl = "https://api.jsonbin.io/v3/b/61b3150e0ddbee6f8b1aa830";
 const _headers = {
-"X-Master-Key":
-"$2b$10$HvdH7Du06WMNs0sAgZlD7eB03KvfEjNrT8uiRAPd7KC5vHmDCB8y.",
-"Content-Type": "application/json",
+  "X-Master-Key":
+    "$2b$10$HvdH7Du06WMNs0sAgZlD7eB03KvfEjNrT8uiRAPd7KC5vHmDCB8y.",
+  "Content-Type": "application/json",
 };
 
-
-// ========== READ ==========
 // ========== READ ==========
 
 /**
@@ -39,8 +37,8 @@ function appendUsers(users) {
         <img src="${user.avatarImg}">
         <h3>${user.businessName}</h3>
         <p>${user.title}</p>
-        <p>${user.pickupDate} ${user.pickupTime}</p>
-        <h2>${user.price}</h2>
+        <p>Pick up time: ${user.pickupDate} kl. ${user.pickupTime}</p>
+        <h2>${user.price} kr.</h2>
         <button onclick="selectUser(${user.id})">Update</button>
         <button onclick="deleteUser(${user.id})">Delete</button>
       </article>
@@ -97,14 +95,13 @@ async function createUser() {
   navigateTo("#/product");
 }
 
-
 function showDetailView(id) {
-  const userObject = _users.find(user => user.id == id);
+  const userObject = _users.find((user) => user.id == id);
   document.querySelector("#detailView h2").innerHTML = userObject.name;
-  document.querySelector("#detailViewContainer").innerHTML = /*html*/`
+  document.querySelector("#detailViewContainer").innerHTML = /*html*/ `
       <img src="${userObject.avatarUrl}" onclick="showDetailView('${userObject.id}')">
       `;
-    navigateTo("detailView");
+  navigateTo("detailView");
 }
 
 // ========== UPDATE ==========
@@ -127,7 +124,7 @@ function selectUser(id) {
   let pickupDateInput = document.querySelector("#pickupDate-update");
   let pickupTimeInput = document.querySelector("#pickupTime-update");
   // set indout values with selected user value
- 
+
   //avatarImgInput.value = user.avatarImg;
   titleInput.value = user.title;
   businessNameInput.value = user.businessName;
@@ -143,7 +140,6 @@ function selectUser(id) {
  * Updates user with values from input fields
  */
 async function updateUser() {
-  
   // references to input fields
   const avatarImgInput = document.querySelector("#avatarImg-update");
   const titleInput = document.querySelector("#title-update");
@@ -176,7 +172,7 @@ async function updateUser() {
   pickupDateInput.value = "";
   pickupTimeInput.value = "";
   //navigating back
-  navigateTo("#/update");
+  navigateTo("#/product");
 }
 
 // ========== DELETE ==========
@@ -218,7 +214,7 @@ async function login() {
   const loginObject = { username: username, password: password };
   console.log(loginObject);
   const response = await fetch(
-    "http://localhost:3000/php-login-service/?action=login",
+    "http://localhost:3000/wasteless_app/php-login-service/?action=login",
     {
       method: "POST",
       body: JSON.stringify(loginObject),
@@ -227,7 +223,7 @@ async function login() {
 
   const data = await response.json();
   console.log(data);
- 
+
   if (data.authenticated) {
     console.log(data);
     localStorage.setItem("userIsAuthenticated", true);
@@ -266,7 +262,7 @@ async function signup() {
   console.log(user);
 
   const response = await fetch(
-    "http://localhost:3000/php-login-service/?action=signup",
+    "http://localhost:3000/wasteless_app/php-login-service/?action=signup",
     {
       method: "POST",
       body: JSON.stringify(user),
