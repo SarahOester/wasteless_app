@@ -30,7 +30,6 @@ h1 {
   letter-spacing: 3px;
   font-weight: 800;
   color: var(--green);
-  
 }
 
 h2 {
@@ -73,8 +72,6 @@ p {
   padding: 1.5em;
   color: #fff;
 }
-
-
 
 .tabbar {
   position: fixed;
@@ -131,7 +128,7 @@ p {
 /* ---------- home page ---------- */
 
 #home {
-  background-image: url(../img/citroner.jpg);
+  background-image: url(../img/artiskok.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
   margin: 0 auto;
@@ -243,23 +240,6 @@ p {
   padding: 20px;
 }
 
-
-/* ---------- create page ---------- */
-#create {
-  background-image: url(../img/netMedMad.jpg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  margin: 0 auto;
-}
-
-.h2Create {
-  color: var(--green);
-}
-
-.pCreate {
-  color: var(--green);
-}
-
 /* ---------- product page ---------- */
 
 #productButton {
@@ -272,14 +252,6 @@ p {
 
 .h2product {
   color: #568080;
-}
-
-.pProduct {
-  color: #568080;
-}
-
-.deleteButton {
-  background-color:#ee6e73;
 }
 
 /* ---------- input form stryling ---------- */
