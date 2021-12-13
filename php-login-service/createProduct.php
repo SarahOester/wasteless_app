@@ -8,7 +8,6 @@
     // |         Get form data to php and database          |
     // +----------------------------------------------------+
 
-
     $con = new mysqli($server, $username, $password, $database);
     if(!$con) {
         echo "Håber det her virker";
@@ -16,13 +15,18 @@
         // tjekker om serveren er connecet for at se om der kommer nogle errors
     }
 
-    $businessName = $_POST['businessName'];
+    $avatarImg = $_POST['avatarImg'];
     $title = $_POST['title'];
+    $businessName = $_POST['businessName'];
+    $category = $_POST['category'];
+    $productDes = $_POST['productDes'];
+    $price = $_POST['price'];
+    $pickupDate = $_POST['pickupDate'];
+    $pickupTime = $_POST['pickupTime'];
+
     //samler form dataen i variables
     //Her indsætter vi det til vores table
-    $qry = "call CreateProduct (`businessName`,`title`) VALUES ('$businessName','$title')";
-
-    //INSERT INTO `products`
+    $qry = "Call CreateProduct(`avatarImg`,`title`,`businessName`,`category`,`productDes`,`price`,`pickupDate`,`pickupTime`,) VALUES ('$avatarImg','$title','$businessName','$category','$productDes','$price','$pickupDate','$pickupTime',)";
 
     $insert = mysqli_query($con,$qry);
     if(!$insert) {
@@ -31,6 +35,5 @@
     else {
         echo "Data fungere";
     }
-
 
 ?>
