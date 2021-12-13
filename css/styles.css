@@ -247,6 +247,7 @@ p {
   text-decoration: none;
   background-color: var(--green);
   padding: 10px;
+  font-size: 14px;
 }
 
 .h2product {
