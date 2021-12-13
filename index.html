@@ -144,6 +144,7 @@
           >Create a new product</a
         >
         <h2>Your products</h2>
+        <div id="grid-users2" class="grid-container"></div>
         <a href="#/product" class="nav-link right" id="productButton"
           >See all products</a
         >
@@ -163,6 +164,7 @@
       <!-- create -->
       <section id="create" class="page">
         <h2>Create products</h2>
+        <p class="createProduct-message"></p>
         <p>
           You can search your food with others.<br />
           Create, delete and update your post!
@@ -181,48 +183,48 @@
           />
           <input
             type="text"
-            id="title"
+            id="create-title"
             name="title"
             placeholder="Create a title"
             required
           />
           <input
             type="text"
-            id="businessName"
+            id="create-businessName"
             name="businessName"
             placeholder="Type your Business name"
             required
           />
           <input
             type="text"
-            id="category"
+            id="create-category"
             name="category"
             placeholder="Create a category"
             required
           />
           <textarea
-            id="productDes"
+            id="create-productDes"
             name="productDes"
             placeholder="Create a description"
             required
           ></textarea>
           <input
             type="number"
-            id="price"
+            id="create-price"
             name="price"
             placeholder="Create a price"
             required
           />
           <input
             type="date"
-            id="pickupDate"
+            id="create-pickupDate"
             name="pickupDate"
             placeholder="Type your pick-up date"
             required
           />
           <input
             type="time"
-            id="pickupTime"
+            id="create-pickupTime"
             name="pickupTime"
             placeholder="Type your pick-up time"
             required
@@ -235,7 +237,7 @@
 
       <!-- update products page -->
       <section id="update" class="page">
-        <h2>Update your products</h2>
+        <h2>Update products</h2>
         <a class="right" id="updatePage">Thank you for making a difference!</a>
         <form>
           <input

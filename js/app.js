@@ -45,6 +45,7 @@ function appendUsers(users) {
       `;
   }
   document.querySelector("#grid-users").innerHTML = htmlTemplate;
+  document.querySelector("#grid-users2").innerHTML = htmlTemplate;
   //showLoader(false);
 }
 
@@ -268,37 +269,37 @@ async function signup() {
       body: JSON.stringify(user),
     }
   );
+}
+// ========== Update products ==========//
+async function createData() {
+  const avatarImg = "";
+  const title = document.querySelector("#create-title").value;
+  const businessName = document.querySelector("#create-businessName").value;
+  const category = document.querySelector("#create-category").value;
+  const productDes = document.querySelector("#create-productDes").value;
+  const price = document.querySelector("#create-price").value;
+  const pickupDate = document.querySelector("#create-pickupDate").value;
+  const pickupTime = document.querySelector("#create-pickupTime").value;
 
-  // ========== Update products ==========
-  // async function createData() {
-  // const avatarImg = document.querySelector("#create-avatarImg").value;
-  // const title = document.querySelector("#create-title").value;
-  // const businessName = document.querySelector("#create-businessName").value;
-  // const category = document.querySelector("#create-category").value;
-  // const productDes = document.querySelector("#create-productDes").value;
-  // const price = document.querySelector("#create-price").value;
-  // const pickupDate = document.querySelector("#create-pickupDate").value;
-  // const pickupTime = document.querySelector("#create-pickupTime").value;
+  const user = {
+    avatarImg,
+    title,
+    businessName,
+    category,
+    productDes,
+    price,
+    pickupDate,
+    pickupTime,
+  };
+  console.log(user);
 
-  // const user = {
-  //   avatarImg,
-  //   title,
-  //   businessName,
-  //   category,
-  //   productDes,
-  //   price,
-  //   pickupDate,
-  //   pickupTime,
-  // };
-  // console.log(user);
-
-  // const response = await fetch(
-  //   "http://localhost:3000/wasteless_app/php-login-service/?action=post",
-  //   {
-  //     method: "POST",
-  //     body: JSON.stringify(user),
-  //   }
-  // );
+  const response = await fetch(
+    "http://localhost:3000/wasteless_app/php-login-service/createProduct.php",
+    {
+      method: "POST",
+      body: JSON.stringify(user),
+    }
+  );
 
   const data = await response.json();
   console.log(data);
@@ -320,7 +321,7 @@ document.querySelector("#btn-login").onclick = () => login();
 document.querySelector("#btn-logout").onclick = () => logout();
 document.querySelector("#btn-signup").onclick = () => signup();
 document.querySelector("#btnUpdate").onclick = () => updateUser();
-// document.querySelector("#createButton").onclick = () => createData();
+// document.querySelector("createButton").onclick = () => createData();
 
 //kalder på selectUser fordi det her script er et module i htmlen
 window.selectUser = (id) => selectUser(id);
