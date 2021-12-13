@@ -27,8 +27,9 @@
 
     //samler form dataen i variables
     //Her indsætter vi det til vores table
-    $qry = "CALL CreateProduct(`avatarImg`,`title`,`businessName`,`category`,`productDes`,`price`,`pickupDate`,`pickupTime`,) VALUES ('$avatarImg','$title','$businessName','$category','$productDes','$price','$pickupDate','$pickupTime',)";
-    //insert into `products`
+    $qry = "CALL CreateProduct(`avatarImg`,`title`,`businessName`,`category`,`productDes`,`price`,`pickupDate`,`pickupTime`) 
+    VALUES ('$avatarImg','$title','$businessName','$category','$productDes','$price','$pickupDate','$pickupTime')";
+    //insert into ´products´
 
     $insert = mysqli_query($con,$qry);
     if(!$insert) {
