@@ -25,15 +25,19 @@ body {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 40px;
   font-weight: 400;
-  letter-spacing: 3px;
-  font-weight: 800;
+  letter-spacing: 1px;
   color: var(--green);
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--green);
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 h3 {
@@ -250,15 +254,6 @@ p {
   font-size: 14px;
 }
 
-.h2product {
-  color: #568080;
-}
-
-
-.pProduct {
-  color: #568080;
-}
-
 /* ---------- create page ---------- */
 #create {
   background-image: url(../img/avokadopic.jpeg);
@@ -267,16 +262,6 @@ p {
   background-size: 100%;
   margin: 0 auto;
 }
-
-.h2Create {
-  color: #568080;
-
-}
-
-.pCreate {
-  color: #568080;
-}
-
 
 /* ---------- input form stryling ---------- */
 form {
@@ -343,7 +328,7 @@ textarea {
 }
 
 .deleteButton {
-  background-color:#ee6e73;
+  background-color: #ee6e73;
 }
 
 /* ---------- grid container styling ---------- */
