@@ -11,21 +11,6 @@ const _headers = {
 // ========== READ ==========
 
 /**
- * Fetchs person data from jsonbin
- */
-async function loadUsers() {
-  const url = _baseUrl + "/latest"; // make sure to get the latest version
-  const response = await fetch(url, {
-    headers: _headers,
-  });
-  const data = await response.json();
-  console.log(data);
-  _users = data.record;
-  appendUsers(_users);
-}
-loadUsers();
-
-/**
  * Appends users to the DOM
  * @param {Array} users
  */
@@ -45,7 +30,7 @@ function appendUsers(users) {
       `;
   }
   document.querySelector("#grid-users").innerHTML = htmlTemplate;
-  document.querySelector("#grid-users2").innerHTML = htmlTemplate;
+
   //showLoader(false);
 }
 
@@ -270,7 +255,7 @@ async function signup() {
     }
   );
 }
-// ========== Update products ==========//
+// ========== Create products ==========//
 async function createData() {
   const avatarImg = "";
   const title = document.querySelector("#create-title").value;
@@ -305,6 +290,7 @@ async function createData() {
   console.log("Response: " + data);
   if (data.success) {
     // resetMessage();
+    readProducts();
     navigateTo("#/product");
   }
 }
@@ -321,10 +307,12 @@ async function readProducts() {
       method: "GET",
     }
   );
-  const products = await response.json();
-  console.log(products);
-  appendUsers(products);
+  const responeData = await response.json();
+  console.log(responeData);
+  appendUsers(responeData.data);
 }
+
+readProducts();
 
 // event listeners
 document.querySelector("#btn-login").onclick = () => login();
@@ -332,6 +320,7 @@ document.querySelector("#btn-logout").onclick = () => logout();
 document.querySelector("#btn-signup").onclick = () => signup();
 document.querySelector("#btnUpdate").onclick = () => updateUser();
 document.querySelector("#createButton").onclick = () => createData();
+document.querySelector("#grid-products").onclick = () => readProducts();
 
 //kalder på selectUser fordi det her script er et module i htmlen
 window.selectUser = (id) => selectUser(id);
