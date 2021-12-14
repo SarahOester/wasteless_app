@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 session_start();
-include("mysql.php");
+include("src/mysql.php");
 
 
 // +----------------------------------------------------+
