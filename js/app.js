@@ -32,6 +32,7 @@ loadUsers();
 function appendUsers(users) {
   let htmlTemplate = "";
   for (const user of users) {
+    //mcreating html in javascript 
     htmlTemplate += /*html*/ `
       <article>
         <img src="${user.avatarImg}">
@@ -44,6 +45,7 @@ function appendUsers(users) {
       </article>
       `;
   }
+  //making a dom manipulation betwwen the javacript written HTML to the Real Html 
   document.querySelector("#grid-users").innerHTML = htmlTemplate;
   document.querySelector("#grid-users2").innerHTML = htmlTemplate;
   //showLoader(false);
@@ -215,7 +217,7 @@ async function login() {
   const loginObject = { username: username, password: password };
   console.log(loginObject);
   const response = await fetch(
-    "http://localhost:3000/wasteless_app/php-login-service/?action=login",
+    "http://localhost:3000/php-login-service/?action=login",
     {
       method: "POST",
       body: JSON.stringify(loginObject),
@@ -263,14 +265,14 @@ async function signup() {
   console.log(user);
 
   const response = await fetch(
-    "http://localhost:3000/wasteless_app/php-login-service/?action=signup",
+    "http://localhost:3000/php-login-service/?action=signup",
     {
       method: "POST",
       body: JSON.stringify(user),
     }
   );
 }
-// ========== Update products ==========//
+// ========== create data products ==========//
 async function createData() {
   const avatarImg = "";
   const title = document.querySelector("#create-title").value;
@@ -294,7 +296,7 @@ async function createData() {
   console.log(user);
 
   const response = await fetch(
-    "http://localhost:3000/wasteless_app/php-login-service/createProduct.php?action=create",
+    "http://localhost:3000/php-login-service/createProduct.php?action=create",
     {
       method: "POST",
       body: JSON.stringify(user),
@@ -316,7 +318,7 @@ function resetMessage() {
 
 async function readProducts() {
   const response = await fetch(
-    "http://localhost:3000/wasteless_app/php-login-service/createProduct.php?action=read",
+    "http://localhost:3000/php-login-service/createProduct.php?action=read",
     {
       method: "GET",
     }
