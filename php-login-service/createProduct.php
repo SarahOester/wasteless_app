@@ -3,6 +3,8 @@
     session_start();
     include("src/mysql.php");
 
+    header('Content-Type: application/json; charset=utf-8');
+
     // +----------------------------------------------------+
     // |         Get form data to php and database          |
     // +----------------------------------------------------+
@@ -35,20 +37,22 @@
                 }
         }
 
-        //maikng a read to read the products into the database
-        if ($action == "read") {
-            //making a reference from the database to php with 
-         $sql = "SELECT id FROM products WHERE businessName = '$businessName'";
-                $result = $mySQL->query($sql);
-
-            if ($mySQL->query($sql) === TRUE) {
-                        $response['signupSuccess'] = TRUE;
-                        echo json_encode($response);
-                    } else {
-                        $response['signupSuccess'] = FALSE;
-                        $response['error'] = "Signup failed. Please try again.";
-                        echo json_encode($response);
-                    }
+        if ($_GET['action'] == "read") {
+            $sql = "SELECT title, businessName, price, pickupDate, pickupTime FROM products WHERE businessName = 'Brødhus' ORDER BY id DESC";
+            $result = $mySQL->query($sql);
+            if ($result == true) {
+                $resultsArray = [];
+                while($row = $result->fetch_object()) {
+                    $resultsArray[] = $row;
+                }
+                $response['status'] = TRUE;
+                $response['data'] = $resultsArray;
+                echo json_encode($response);
+            } else {
+                $response['status'] = FALSE;
+                $response['error'] = "Read failed.";
+                echo json_encode($response);
+            }
         }
     }
 ?>
