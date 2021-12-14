@@ -84,11 +84,6 @@ p {
   top: 35px;
 }
 
-.tabbar2 {
-  z-index: 0;
-  padding: 26.5px 20px;
-  background-color: var(--green);
-}
 
 /* Style the links inside the navigation bar */
 .tabbar a {

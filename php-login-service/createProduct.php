@@ -35,7 +35,9 @@
                 }
         }
 
+        //maikng a read to read the products into the database
         if ($action == "read") {
+            //making a reference from the database to php with 
          $sql = "SELECT id FROM products WHERE businessName = '$businessName'";
                 $result = $mySQL->query($sql);
 
