@@ -264,6 +264,14 @@ span p {
   margin: 4em 0;
 }
 
+.productBtn {
+  margin: 2em;
+}
+
+#home-headline {
+  margin: 3em 0 1em 0;
+}
+
 /* ---------- create page ---------- */
 #create {
   background-image: url(../img/avokadopic.jpeg);

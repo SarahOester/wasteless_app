@@ -58,13 +58,13 @@ async function createUser() {
   console.log("Hey");
   // references to input fields
   let avatarImgInput = document.querySelector("#avatarImg");
-  let titleInput = document.querySelector("#title");
-  let businessNameInput = document.querySelector("#businessName");
-  let categoryInput = document.querySelector("#category");
-  let productDesInput = document.querySelector("#productDes");
-  let priceInput = document.querySelector("#price");
-  let pickupDateInput = document.querySelector("#pickupDate");
-  let pickupTimeInput = document.querySelector("#pickupTime");
+  let titleInput = document.querySelector("#create-title");
+  let businessNameInput = document.querySelector("#create-businessName");
+  let categoryInput = document.querySelector("#create-category");
+  let productDesInput = document.querySelector("#create-productDes");
+  let priceInput = document.querySelector("#create-price");
+  let pickupDateInput = document.querySelector("#create-pickupDate");
+  let pickupTimeInput = document.querySelector("#create-pickupTime");
   // dummy generated user id
   const userId = Date.now();
   // declaring a new user object
@@ -215,7 +215,7 @@ async function login() {
   const loginObject = { username: username, password: password };
   console.log(loginObject);
   const response = await fetch(
-    "http://localhost:3000/php-login-service/?action=login",
+    "http://localhost:3000/wasteless_app/php-login-service/?action=login",
     {
       method: "POST",
       body: JSON.stringify(loginObject),
@@ -263,7 +263,7 @@ async function signup() {
   console.log(user);
 
   const response = await fetch(
-    "http://localhost:3000/php-login-service/?action=signup",
+    "http://localhost:3000/wasteless_app/php-login-service/?action=signup",
     {
       method: "POST",
       body: JSON.stringify(user),
@@ -294,7 +294,7 @@ async function createData() {
   console.log(user);
 
   const response = await fetch(
-    "http://localhost:3000/wasteless_app/php-login-service/createProduct.php",
+    "http://localhost:3000/wasteless_app/php-login-service/createProduct.php?action=create",
     {
       method: "POST",
       body: JSON.stringify(user),
@@ -302,12 +302,10 @@ async function createData() {
   );
 
   const data = await response.json();
-  console.log(data);
-  if (data.signupSuccess) {
-    resetMessage();
-    navigateTo("#/login");
-  } else {
-    document.querySelector(".signup-message").innerHTML = data.error;
+  console.log("Response: " + data);
+  if (data.success) {
+    // resetMessage();
+    navigateTo("#/product");
   }
 }
 
@@ -316,12 +314,24 @@ function resetMessage() {
   document.querySelector(".login-message").innerHTML = "";
 }
 
+async function readProducts() {
+  const response = await fetch(
+    "http://localhost:3000/wasteless_app/php-login-service/createProduct.php?action=read",
+    {
+      method: "GET",
+    }
+  );
+  const products = await response.json();
+  console.log(products);
+  appendUsers(products);
+}
+
 // event listeners
 document.querySelector("#btn-login").onclick = () => login();
 document.querySelector("#btn-logout").onclick = () => logout();
 document.querySelector("#btn-signup").onclick = () => signup();
 document.querySelector("#btnUpdate").onclick = () => updateUser();
-// document.querySelector("createButton").onclick = () => createData();
+document.querySelector("#createButton").onclick = () => createData();
 
 //kalder på selectUser fordi det her script er et module i htmlen
 window.selectUser = (id) => selectUser(id);
